@@ -1,0 +1,72 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="chrisandbrendanappdev.unhalbedo.fragments.SurveyStartTime">
+
+    <TextView
+        android:id="@+id/survey_start_time_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/survey_question_margin_bottom"
+        android:layout_marginTop="@dimen/survey_question_margin_top"
+        android:text="@string/survey_start_time_question"
+        android:textSize="@dimen/survey_question_size"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_start_time_day_label" />
+
+    <TextView
+        android:id="@+id/survey_start_time_day"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/survey_start_time_day"
+        android:text=""
+        android:textColor="@color/BLACK"
+        android:textSize="@dimen/survey_data_size" />
+
+    <Button
+        android:id="@+id/survey_start_time_set_day"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/survey_start_time_set_date_label" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_start_time_time_label" />
+
+    <TextView
+        android:id="@+id/survey_start_time_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/survey_start_time_time"
+        android:text=""
+        android:textColor="@color/BLACK"
+        android:textSize="@dimen/survey_data_size" />
+
+    <Button
+        android:id="@+id/survey_start_time_set_time"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/survey_start_time_set_time_label" />
+
+    <Button
+        android:id="@+id/survey_start_time_next"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/next"
+        android:textSize="@dimen/survey_next_text_size" />
+
+</LinearLayout>

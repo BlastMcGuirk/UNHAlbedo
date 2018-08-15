@@ -1,0 +1,117 @@
+<resources>
+    <string name="app_name">Albedo</string>
+
+    <!-- Main Strings -->
+    <string name="username">username</string>
+    <string name="main_not_logged_in">Not logged in\n\nClick Profile button to sign in</string>
+    <string name="main_logged_in">Logged in as: </string>
+
+    <!-- Profile Logged Out Strings -->
+    <string name="profile_username_label">Username:</string>
+    <string name="profile_password_label">Password:</string>
+    <string name="profile_log_in">Log In</string>
+    <string name="profile_forgot_password">Forgot Password?</string>
+    <!-- Profile Logged In Strings -->
+    <string name="profile_staff_label">Staff:</string>
+    <string name="profile_name_label">Name:</string>
+    <string name="profile_station_label">Station:</string>
+    <string name="profile_town_label">Town:</string>
+    <string name="profile_state_label">State:</string>
+    <string name="profile_reset_password">Reset Password</string>
+    <string name="profile_log_out">Log Out</string>
+
+    <!-- Survey Strings -->
+    <!-- Location -->
+    <string name="survey_location_question">Where did the observation take place?</string>
+    <string name="survey_location_duty_label">Duty Station:</string>
+    <string name="survey_location_lat_label">Latitude:</string>
+    <string name="survey_location_lon_label">Longitude:</string>
+    <string name="survey_location_current_location_label">Use Current Location</string>
+    <!-- Start Time -->
+    <string name="survey_start_time_question">When did the observation start?</string>
+    <string name="survey_start_time_day_label">Date:</string>
+    <string name="survey_start_time_set_date_label">Set Date</string>
+    <string name="survey_start_time_time_label">Time:</string>
+    <string name="survey_start_time_set_time_label">Set Time</string>
+    
+
+
+
+
+
+
+
+
+
+    <!-- Strings related to login -->
+    <string name="prompt_username">Username</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_username">This username is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing username
+        completions."
+    </string>
+
+    <!-- LogDetails Strings -->
+    <string name="dutyStation">Duty Station</string>
+    <string-array name="dutyStationNames">
+        <item>NH-CS-10</item>
+        <item>NH-MR-4</item>
+        <item>NH-HL-25</item>
+        <item>NH-CH-19</item>
+        <item>NH-HL-58</item>
+        <item>NH-ST-99</item>
+        <item>NH-RC-46</item>
+        <item>NH-MR-6</item>
+        <item>NH-MR-58</item>
+        <item>NH-GR-1</item>
+        <item>NH-GR-11</item>
+        <item>NH-BK-24</item>
+        <item>NH-CS-7</item>
+    </string-array>
+    <string name="date">Date</string>
+    <string name="pick_date">Choose Date</string>
+    <string name="time">Time</string>
+    <string name="pick_time">Choose Time</string>
+    <string name="next">Next</string>
+
+    <!-- CloudCoverage Strings -->
+    <string name="cloud_cover_question">Which of the following best describes the sky during observation?</string>
+    <string name="ACLR">All Clear: 0% Cloud Cover</string>
+    <string name="CLR">Clear: 0–30% Cloud Cover</string>
+    <string name="PCL">Partly Cloudy: 30–70% Cloud Cover</string>
+    <string name="OVC">Overcast: 70–100% Cloud Cover</string>
+
+    <!-- IncomingShortwave Strings -->
+    <string name="incoming_shortwave_question">What are the incoming shortwave readings?</string>
+    <string name="incoming1">Incoming Shortwave 1:</string>
+    <string name="incoming2">Incoming Shortwave 2:</string>
+    <string name="incoming3">Incoming Shortwave 3:</string>
+
+    <!-- OutgoingShortwave Strings -->
+    <string name="outgoing_shortwave_question">What are the outgoing shortwave readings?</string>
+    <string name="outgoing1">Outgoing Shortwave 1:</string>
+    <string name="outgoing2">Outgoing Shortwave 2:</string>
+    <string name="outgoing3">Outgoing Shortwave 3:</string>
+
+    <!-- Temperature Strings -->
+    <string name="temperature_question">What is the temperature of the surface of the snow (°F)?</string>
+    <string name="temperature">Temperature:</string>
+
+    <!-- TubeInfo Strings -->
+    <string name="tubeNumberLabel">What is your tube number?</string>
+    <string name="snowDepthLabel">What is the depth of the snow on the ground?</string>
+    <string name="snowWeightLabel">What is the weight of the snow with the tube?</string>
+    <string name="tareWeightLabel">What is the snow tube tare weight?</string>
+
+    <!-- GroundType Strings -->
+    <string name="ground_type_question">What </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

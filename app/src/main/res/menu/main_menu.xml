@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_profile"
+        android:orderInCategory="1"
+        app:showAsAction="always"
+        android:icon="@drawable/baseline_account_box_black_48hd"
+        android:title="Account" />
+    <item
+        android:id="@+id/action_start_submission"
+        android:orderInCategory="2"
+        app:showAsAction="always"
+        android:icon="@drawable/baseline_add_black_48hd"
+        android:title="Start Submission" />
+
+</menu>
