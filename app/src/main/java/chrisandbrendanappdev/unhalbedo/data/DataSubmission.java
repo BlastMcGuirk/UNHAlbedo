@@ -1,8 +1,12 @@
 package chrisandbrendanappdev.unhalbedo.data;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
+
 import chrisandbrendanappdev.unhalbedo.data.DataEnums.*;
 
 /**
@@ -23,6 +27,9 @@ public class DataSubmission implements Serializable {
     private CloudCover cloudCoverage;
 
     // Snow State
+    private SnowState snowState;
+
+    // Patchiness Percentage
     private int patchinessPercentage;
 
     // Snow Surface Age
@@ -55,6 +62,7 @@ public class DataSubmission implements Serializable {
         latitude = longitude = -999;
         startCalendar = null;
         cloudCoverage = null;
+        snowState = null;
         patchinessPercentage = -999;
         snowSurfaceAge = null;
         groundCover = null;
@@ -76,6 +84,7 @@ public class DataSubmission implements Serializable {
         output += "Lat/Lon: " + latitude + "/" + longitude + '\n';
         output += "Start Date: " + startCalendar.getTime() + '\n';
         output += "Cloud Coverage: " + cloudCoverage + '\n';
+        output += "Snow State: " + snowState + '\n';
         output += "Patchiness Percentage: " + patchinessPercentage + "%" + '\n';
         output += "Snow Surface Age: " + snowSurfaceAge + '\n';
         output += "Ground Cover: " + groundCover + '\n';
@@ -89,6 +98,46 @@ public class DataSubmission implements Serializable {
         output += "Notes: " + notes + '\n';
         output += "End Time: " + endCalendar.getTime();
         return output;
+    }
+
+    public String[] getDataArray() {
+        ArrayList<String> list = new ArrayList<>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy", Locale.US);
+        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm aa", Locale.US);
+
+        list.add(stationID.toString());
+        list.add(String.valueOf(latitude));
+        list.add(String.valueOf(longitude));
+
+        list.add(dateFormat.format(startCalendar));
+        list.add(timeFormat.format(startCalendar));
+
+        list.add(String.valueOf(incoming1));
+        list.add(String.valueOf(incoming2));
+        list.add(String.valueOf(incoming3));
+        list.add(String.valueOf(outgoing1));
+        list.add(String.valueOf(outgoing2));
+        list.add(String.valueOf(outgoing3));
+
+        double albedo = ((outgoing1 / incoming1) + (outgoing2 / incoming2) + (outgoing3 / incoming3)) / 3.0;
+        list.add(String.valueOf(albedo));
+
+        list.add(cloudCoverage.toString());
+        list.add(snowState.toString());
+        list.add(groundCover.toString());
+        list.add(patchinessPercentage + "%");
+        list.add(snowSurfaceAge.toString());
+
+        list.add(String.valueOf(snowDepth));
+        list.add(String.valueOf(snowWeightWithTube));
+        list.add(String.valueOf(snowTubeWeight));
+        list.add(String.valueOf(temperature));
+        list.add(String.valueOf(snowMelt));
+
+        list.add(notes);
+        list.add(timeFormat.format(endCalendar));
+
+        return (String[]) list.toArray();
     }
 
     public StationID getStationID() {return stationID;}
@@ -105,6 +154,9 @@ public class DataSubmission implements Serializable {
 
     public CloudCover getCloudCoverage() {return cloudCoverage;}
     public void setCloudCoverage(CloudCover cloudCoverage) {this.cloudCoverage = cloudCoverage;}
+
+    public SnowState getSnowState() {return snowState;}
+    public void setSnowState(SnowState snowState) {this.snowState = snowState;}
 
     public int getPatchinessPercentage() {return patchinessPercentage;}
     public void setPatchinessPercentage(int patchinessPercentage) {this.patchinessPercentage = patchinessPercentage;}

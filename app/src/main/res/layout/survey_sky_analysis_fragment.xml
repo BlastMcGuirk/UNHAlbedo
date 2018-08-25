@@ -1,0 +1,67 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="chrisandbrendanappdev.unhalbedo.fragments.SurveySkyAnalysis">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/survey_question_margin_bottom"
+        android:layout_marginTop="@dimen/survey_question_margin_top"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/survey_sky_analysis_question"
+        android:textColor="@color/BLACK"
+        android:textSize="@dimen/survey_question_size" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/survey_sky_analysis_ACLR"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/survey_sky_analysis_button_height"
+                android:layout_margin="@dimen/survey_sky_analysis_button_margin"
+                android:background="@drawable/sky_clear"
+                android:text="@string/survey_sky_analysis_ACLR_label"
+                android:textSize="@dimen/survey_sky_analysis_button_text" />
+
+            <Button
+                android:id="@+id/survey_sky_analysis_CLR"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/survey_sky_analysis_button_height"
+                android:layout_margin="@dimen/survey_sky_analysis_button_margin"
+                android:background="@drawable/sky_clouds"
+                android:text="@string/survey_sky_analysis_CLR_label"
+                android:textSize="@dimen/survey_sky_analysis_button_text" />
+
+            <Button
+                android:id="@+id/survey_sky_analysis_PCL"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/survey_sky_analysis_button_height"
+                android:layout_margin="@dimen/survey_sky_analysis_button_margin"
+                android:background="@drawable/sky_cloudy"
+                android:text="@string/survey_sky_analysis_PCL_label"
+                android:textSize="@dimen/survey_sky_analysis_button_text" />
+
+            <Button
+                android:id="@+id/survey_sky_analysis_OVC"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/survey_sky_analysis_button_height"
+                android:layout_margin="@dimen/survey_sky_analysis_button_margin"
+                android:background="@drawable/sky_gray"
+                android:text="@string/survey_sky_analysis_OVC_label"
+                android:textSize="@dimen/survey_sky_analysis_button_text" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

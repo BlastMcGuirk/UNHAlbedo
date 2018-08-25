@@ -112,7 +112,7 @@ public class SurveyLocation extends SurveyFragment {
 
         // TODO: Check profile for default duty station
         // Temporarily set default to NH-ST-99
-        DataEnums.StationID defaultStation = DataEnums.StationID.NHST99;
+        DataEnums.StationID defaultStation = DataEnums.StationID.NONE;
         dutyStations.setSelection(spinnerAdapter.getPosition(defaultStation));
         latitude.setText(defaultStation.getLatitude() + "");
         longitude.setText(defaultStation.getLongitude() + "");

@@ -1,0 +1,100 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="chrisandbrendanappdev.unhalbedo.fragments.SurveyGroundCover">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/survey_question_margin_bottom"
+        android:layout_marginTop="@dimen/survey_question_margin_top"
+        android:gravity="center"
+        android:text="@string/survey_ground_cover_question"
+        android:textColor="@color/BLACK"
+        android:textSize="@dimen/survey_question_size" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/survey_ground_cover_grass_living"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/survey_ground_cover_button_height"
+                android:layout_margin="@dimen/survey_ground_cover_button_margin"
+                android:background="@drawable/grass"
+                android:text="@string/survey_ground_cover_grass_living_label"
+                android:textColor="@color/WHITE"
+                android:textSize="@dimen/survey_ground_cover_button_text" />
+
+            <Button
+                android:id="@+id/survey_ground_cover_grass_dead"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/survey_ground_cover_button_height"
+                android:layout_margin="@dimen/survey_ground_cover_button_margin"
+                android:background="@drawable/grass_dead"
+                android:text="@string/survey_ground_cover_grass_dead_label"
+                android:textColor="@color/WHITE"
+                android:textSize="@dimen/survey_ground_cover_button_text" />
+
+            <Button
+                android:id="@+id/survey_ground_cover_wet_soil"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/survey_ground_cover_button_height"
+                android:layout_margin="@dimen/survey_ground_cover_button_margin"
+                android:background="@drawable/soil_wet"
+                android:text="@string/survey_ground_cover_wet_soil_label"
+                android:textColor="@color/WHITE"
+                android:textSize="@dimen/survey_ground_cover_button_text" />
+
+            <Button
+                android:id="@+id/survey_ground_cover_dry_soil"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/survey_ground_cover_button_height"
+                android:layout_margin="@dimen/survey_ground_cover_button_margin"
+                android:background="@drawable/soil_dry"
+                android:text="@string/survey_ground_cover_dry_soil_label"
+                android:textColor="@color/WHITE"
+                android:textSize="@dimen/survey_ground_cover_button_text" />
+
+            <Button
+                android:id="@+id/survey_ground_cover_pavement"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/survey_ground_cover_button_height"
+                android:layout_margin="@dimen/survey_ground_cover_button_margin"
+                android:background="@drawable/pavement"
+                android:text="@string/survey_ground_cover_pavement_label"
+                android:textColor="@color/WHITE"
+                android:textSize="@dimen/survey_ground_cover_button_text" />
+
+            <Button
+                android:id="@+id/survey_ground_cover_wooden_deck"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/survey_ground_cover_button_height"
+                android:layout_margin="@dimen/survey_ground_cover_button_margin"
+                android:background="@drawable/deck"
+                android:text="@string/survey_ground_cover_wooden_deck_label"
+                android:textColor="@color/WHITE"
+                android:textSize="@dimen/survey_ground_cover_button_text" />
+
+            <Button
+                android:id="@+id/survey_ground_cover_other"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/survey_ground_cover_button_height"
+                android:layout_margin="@dimen/survey_ground_cover_button_margin"
+                android:background="@drawable/gray_background"
+                android:text="@string/survey_ground_cover_other_label"
+                android:textColor="@color/WHITE"
+                android:textSize="@dimen/survey_ground_cover_button_text" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

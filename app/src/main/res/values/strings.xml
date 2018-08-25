@@ -21,9 +21,23 @@
     <string name="profile_log_out">Log Out</string>
 
     <!-- Survey Strings -->
+    <string name="next">Next</string>
+    <string name="title_location">Location</string>
+    <string name="title_start_time">Start Time</string>
+    <string name="title_sky_analysis">Sky Analysis</string>
+    <string name="title_snow_state">Snow State</string>
+    <string name="title_patchiness_percentage">Patchiness Percentage</string>
+    <string name="title_snow_surface_age">Snow Surface Age</string>
+    <string name="title_ground_cover">Ground Cover</string>
+    <string name="title_incoming_shortwaves">Incoming Shortwaves</string>
+    <string name="title_outgoing_shortwaves">Outgoing Shortwaves</string>
+    <string name="title_additional_data">Additional Snow Depth and Density Data</string>
+    <string name="title_notes">Notes</string>
+    <string name="title_end_time">End Time</string>
+    <string name="title_summary">Summary</string>
     <!-- Location -->
     <string name="survey_location_question">Where did the observation take place?</string>
-    <string name="survey_location_duty_label">Duty Station:</string>
+    <string name="survey_location_duty_label">Station ID:</string>
     <string name="survey_location_lat_label">Latitude:</string>
     <string name="survey_location_lon_label">Longitude:</string>
     <string name="survey_location_current_location_label">Use Current Location</string>
@@ -33,85 +47,56 @@
     <string name="survey_start_time_set_date_label">Set Date</string>
     <string name="survey_start_time_time_label">Time:</string>
     <string name="survey_start_time_set_time_label">Set Time</string>
-    
-
-
-
-
-
-
-
-
-
-    <!-- Strings related to login -->
-    <string name="prompt_username">Username</string>
-    <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_username">This username is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing username
-        completions."
-    </string>
-
-    <!-- LogDetails Strings -->
-    <string name="dutyStation">Duty Station</string>
-    <string-array name="dutyStationNames">
-        <item>NH-CS-10</item>
-        <item>NH-MR-4</item>
-        <item>NH-HL-25</item>
-        <item>NH-CH-19</item>
-        <item>NH-HL-58</item>
-        <item>NH-ST-99</item>
-        <item>NH-RC-46</item>
-        <item>NH-MR-6</item>
-        <item>NH-MR-58</item>
-        <item>NH-GR-1</item>
-        <item>NH-GR-11</item>
-        <item>NH-BK-24</item>
-        <item>NH-CS-7</item>
-    </string-array>
-    <string name="date">Date</string>
-    <string name="pick_date">Choose Date</string>
-    <string name="time">Time</string>
-    <string name="pick_time">Choose Time</string>
-    <string name="next">Next</string>
-
-    <!-- CloudCoverage Strings -->
-    <string name="cloud_cover_question">Which of the following best describes the sky during observation?</string>
-    <string name="ACLR">All Clear: 0% Cloud Cover</string>
-    <string name="CLR">Clear: 0–30% Cloud Cover</string>
-    <string name="PCL">Partly Cloudy: 30–70% Cloud Cover</string>
-    <string name="OVC">Overcast: 70–100% Cloud Cover</string>
-
-    <!-- IncomingShortwave Strings -->
-    <string name="incoming_shortwave_question">What are the incoming shortwave readings?</string>
-    <string name="incoming1">Incoming Shortwave 1:</string>
-    <string name="incoming2">Incoming Shortwave 2:</string>
-    <string name="incoming3">Incoming Shortwave 3:</string>
-
-    <!-- OutgoingShortwave Strings -->
-    <string name="outgoing_shortwave_question">What are the outgoing shortwave readings?</string>
-    <string name="outgoing1">Outgoing Shortwave 1:</string>
-    <string name="outgoing2">Outgoing Shortwave 2:</string>
-    <string name="outgoing3">Outgoing Shortwave 3:</string>
-
-    <!-- Temperature Strings -->
-    <string name="temperature_question">What is the temperature of the surface of the snow (°F)?</string>
-    <string name="temperature">Temperature:</string>
-
-    <!-- TubeInfo Strings -->
-    <string name="tubeNumberLabel">What is your tube number?</string>
-    <string name="snowDepthLabel">What is the depth of the snow on the ground?</string>
-    <string name="snowWeightLabel">What is the weight of the snow with the tube?</string>
-    <string name="tareWeightLabel">What is the snow tube tare weight?</string>
-
-    <!-- GroundType Strings -->
-    <string name="ground_type_question">What </string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Sky Analysis -->
+    <string name="survey_sky_analysis_question">Which of the following best describe the sky during observation?</string>
+    <string name="survey_sky_analysis_ACLR_label">All Clear: 0% cloud cover</string>
+    <string name="survey_sky_analysis_CLR_label">Clear: 0–30% cloud cover</string>
+    <string name="survey_sky_analysis_PCL_label">Partly Cloudy: 30–70% cloud cover</string>
+    <string name="survey_sky_analysis_OVC_label">Overcast: 70–100% cloud cover</string>
+    <!-- Snow State -->
+    <string name="survey_snow_state_question">Which of the following best describes the snow right now?</string>
+    <string name="survey_snow_state_snow_covered_label">Snow Covered</string>
+    <string name="survey_snow_state_patchy_snow_label">Patchy Snow</string>
+    <string name="survey_snow_state_snow_free_dormant_label">Snow-free/Dormant</string>
+    <string name="survey_snow_state_snow_free_green_label">Snow-free/Green</string>
+    <string name="survey_snow_state_dormant_explanation">Snow-free/Dormant means that there is no snow on the ground and dead grass.</string>
+    <string name="survey_snow_state_green_explanation">Snow-free/Green means that there is no snow on the ground and living grass.</string>
+    <!-- Patchiness Percentage -->
+    <string name="survey_patchiness_percentage_question">Estimate the percentage of the ground that is covered by snow:</string>
+    <!-- Ground Cover -->
+    <string name="survey_ground_cover_question">What type of ground is below the snow?</string>
+    <string name="survey_ground_cover_grass_living_label">Grass (Living)</string>
+    <string name="survey_ground_cover_grass_dead_label">Grass (Dead)</string>
+    <string name="survey_ground_cover_wet_soil_label">Wet Soil</string>
+    <string name="survey_ground_cover_dry_soil_label">Dry Soil</string>
+    <string name="survey_ground_cover_pavement_label">Pavement</string>
+    <string name="survey_ground_cover_wooden_deck_label">Wooden Deck</string>
+    <string name="survey_ground_cover_other_label">Other</string>
+    <!-- Snow Surface Age -->
+    <string name="survey_snow_surface_age_spinner_label">Age:</string>
+    <!-- Incoming Shortwave -->
+    <string name="survey_incoming_shortwave_question">What are the incoming shortwave readings?</string>
+    <string name="survey_incoming_shortwave_label_1">Incoming Shortwave 1:</string>
+    <string name="survey_incoming_shortwave_label_2">Incoming Shortwave 2:</string>
+    <string name="survey_incoming_shortwave_label_3">Incoming Shortwave 3:</string>
+    <!-- Outgoing Shortwave -->
+    <string name="survey_outgoing_shortwave_question">What are the outgoing shortwave readings?</string>
+    <string name="survey_outgoing_shortwave_label_1">Outgoing Shortwave 1:</string>
+    <string name="survey_outgoing_shortwave_label_2">Outgoing Shortwave 2:</string>
+    <string name="survey_outgoing_shortwave_label_3">Outgoing Shortwave 3:</string>
+    <!-- Additional Data -->
+    <string name="survey_additional_data_question">These values are optional and can be entered if the proper equipment is available.</string>
+    <string name="survey_additional_data_snow_depth_label">Snow Depth:</string>
+    <string name="survey_additional_data_weight_snow_label">Tube + Cap + Snow Weight:</string>
+    <string name="survey_additional_data_weight_no_snow_label">Tube + Cap Weight:</string>
+    <string name="survey_additional_data_snow_temperature">Snow Temperature:</string>
+    <!-- Notes -->
+    <string name="survey_notes_question">Observation notes (ie: debris on snow, ice surface, footprints, rain-on-snow)</string>
+    <!-- End Time -->
+    <string name="survey_end_time_question">When did the observation end?</string>
+    <string name="survey_end_time_time_label">Time:</string>
+    <string name="survey_end_time_set_time_label">Set Time</string>
+    <!-- Summary -->
+    <string name="survey_summary_location_title">Location</string>
 
 </resources>

@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="chrisandbrendanappdev.unhalbedo.fragments.SurveyNotes">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/survey_question_margin_bottom"
+        android:layout_marginTop="@dimen/survey_question_margin_top"
+        android:gravity="center"
+        android:text="@string/survey_notes_question"
+        android:textColor="@color/BLACK"
+        android:textSize="@dimen/survey_question_size" />
+
+    <EditText
+        android:id="@+id/survey_notes_notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:lines="6"
+        android:inputType="textMultiLine"
+        android:scrollbars="vertical"
+        android:gravity="start|top"
+        android:labelFor="@+id/survey_notes_notes"/>
+
+    <Button
+        android:id="@+id/survey_notes_next"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/next"
+        android:textSize="@dimen/survey_next_text_size" />
+
+</LinearLayout>

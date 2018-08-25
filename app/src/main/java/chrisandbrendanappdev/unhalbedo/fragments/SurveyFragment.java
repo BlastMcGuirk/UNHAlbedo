@@ -2,6 +2,7 @@ package chrisandbrendanappdev.unhalbedo.fragments;
 
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.view.WindowManager;
 
 import chrisandbrendanappdev.unhalbedo.R;
 import chrisandbrendanappdev.unhalbedo.activities.DataProvider;
@@ -17,6 +18,7 @@ abstract class SurveyFragment extends Fragment {
     DataSubmission data;
 
     public void init(View v) {
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         getData();
         getViews(v);
         fillInEmptyValues();

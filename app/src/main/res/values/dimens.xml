@@ -17,13 +17,30 @@
     <dimen name="survey_question_margin_bottom">15dp</dimen>
     <dimen name="survey_data_size">24sp</dimen>
     <!-- Location -->
+    <!-- Start Time -->
+    <!-- Sky Analysis -->
+    <dimen name="survey_sky_analysis_button_margin">5dp</dimen>
+    <dimen name="survey_sky_analysis_button_text">18sp</dimen>
+    <dimen name="survey_sky_analysis_button_height">75dp</dimen>
+    <!-- Snow State -->
+    <dimen name="survey_snow_state_button_margin">5dp</dimen>
+    <dimen name="survey_snow_state_button_text">18sp</dimen>
+    <dimen name="survey_snow_state_button_height">75dp</dimen>
+    <dimen name="survey_snow_state_explanation_margin">10dp</dimen>
+    <!-- Patchiness Percentage -->
+    <dimen name="survey_patchiness_percentage_slider_margin">20dp</dimen>
+    <dimen name="survey_patchiness_percentage_value_margin">10dp</dimen>
+    <!-- Ground Cover -->
+    <dimen name="survey_ground_cover_button_margin">5dp</dimen>
+    <dimen name="survey_ground_cover_button_text">18sp</dimen>
+    <dimen name="survey_ground_cover_button_height">75dp</dimen>
 
 
-    <dimen name="label_size">16sp</dimen>
-    <dimen name="data_size">24sp</dimen>
-    <dimen name="question_size">18sp</dimen>
-    <dimen name="cloud_button_height">75dp</dimen>
-    <dimen name="cloud_button_text">18sp</dimen>
+
+
+
+
+
     <dimen name="list_item_padding">6dp</dimen>
     <dimen name="list_item_text_title_height">38dip</dimen>
     <dimen name="list_item_text_info_height">32dip</dimen>

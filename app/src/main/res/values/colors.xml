@@ -7,4 +7,6 @@
     <color name="BLACK">#000</color>
     <color name="DARK_GRAY">#424242</color>
     <color name="GRAY">#AAA</color>
+    <color name="OFF_WHITE">#DDD</color>
+    <color name="WHITE">#FFF</color>
 </resources>

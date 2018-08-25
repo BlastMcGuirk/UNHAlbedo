@@ -82,6 +82,26 @@ public class DataEnums {
 
         @Override
         public String toString() { return typeName; }
+
+        public void setOtherType(String type) {
+            typeName = type;
+        }
+    }
+
+    public enum SnowState {
+        SNOW_COVERED("Snow-covered"), PATCHY_SNOW("Patchy Snow"),
+        SNOW_FREE_DORMANT("Snow-free/Dormant"), SNOW_FREE_GREEN("Snow-free/Green");
+
+        private String typeName;
+
+        SnowState(String type) {
+            typeName = type;
+        }
+
+        @Override
+        public String toString() {
+            return typeName;
+        }
     }
 
 }

@@ -1,10 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="chrisandbrendanappdev.unhalbedo.fragments.SurveyStartTime">
+    tools:context="chrisandbrendanappdev.unhalbedo.fragments.SurveyOutgoingShortwaves">
 
     <TextView
         android:layout_width="wrap_content"
@@ -12,56 +11,48 @@
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/survey_question_margin_bottom"
         android:layout_marginTop="@dimen/survey_question_margin_top"
-        android:text="@string/survey_start_time_question"
+        android:text="@string/survey_outgoing_shortwave_question"
         android:textColor="@color/BLACK"
         android:textSize="@dimen/survey_question_size" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/survey_start_time_day_label" />
+        android:text="@string/survey_outgoing_shortwave_label_1" />
 
-    <TextView
-        android:id="@+id/survey_start_time_day"
+    <EditText
+        android:id="@+id/survey_outgoing_shortwave_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:labelFor="@+id/survey_start_time_day"
-        android:text=""
-        android:textColor="@color/BLACK"
-        android:textSize="@dimen/survey_data_size" />
-
-    <Button
-        android:id="@+id/survey_start_time_set_day"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/survey_start_time_set_date_label" />
+        android:ems="10"
+        android:inputType="numberDecimal" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/survey_start_time_time_label" />
+        android:text="@string/survey_outgoing_shortwave_label_2" />
 
-    <TextView
-        android:id="@+id/survey_start_time_time"
+    <EditText
+        android:id="@+id/survey_outgoing_shortwave_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:labelFor="@+id/survey_start_time_time"
-        android:text=""
-        android:textColor="@color/BLACK"
-        android:textSize="@dimen/survey_data_size" />
+        android:ems="10"
+        android:inputType="numberDecimal" />
 
-    <Button
-        android:id="@+id/survey_start_time_set_time"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/survey_start_time_set_time_label" />
+        android:text="@string/survey_outgoing_shortwave_label_3" />
+
+    <EditText
+        android:id="@+id/survey_outgoing_shortwave_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal" />
 
     <Button
-        android:id="@+id/survey_start_time_next"
+        android:id="@+id/survey_outgoing_shortwave_next"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

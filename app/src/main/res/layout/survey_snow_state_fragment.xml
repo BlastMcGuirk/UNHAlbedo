@@ -1,0 +1,87 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="chrisandbrendanappdev.unhalbedo.fragments.SurveySnowState">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/survey_question_margin_bottom"
+        android:layout_marginTop="@dimen/survey_question_margin_top"
+        android:gravity="center"
+        android:text="@string/survey_snow_state_question"
+        android:textColor="@color/BLACK"
+        android:textSize="@dimen/survey_question_size" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/survey_snow_state_snow_covered"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/survey_snow_state_button_height"
+                android:layout_margin="@dimen/survey_snow_state_button_margin"
+                android:background="@drawable/snow"
+                android:text="@string/survey_snow_state_snow_covered_label"
+                android:textColor="@color/BLACK"
+                android:textSize="@dimen/survey_snow_state_button_text" />
+
+            <Button
+                android:id="@+id/survey_snow_state_patchy_snow"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/survey_snow_state_button_height"
+                android:layout_margin="@dimen/survey_snow_state_button_margin"
+                android:background="@drawable/snow_patchy"
+                android:text="@string/survey_snow_state_patchy_snow_label"
+                android:textColor="@color/OFF_WHITE"
+                android:textSize="@dimen/survey_snow_state_button_text" />
+
+            <Button
+                android:id="@+id/survey_snow_state_snow_free_dormant"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/survey_snow_state_button_height"
+                android:layout_margin="@dimen/survey_snow_state_button_margin"
+                android:background="@drawable/grass_dead"
+                android:text="@string/survey_snow_state_snow_free_dormant_label"
+                android:textColor="@color/OFF_WHITE"
+                android:textSize="@dimen/survey_snow_state_button_text" />
+
+            <Button
+                android:id="@+id/survey_snow_state_snow_free_green"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/survey_snow_state_button_height"
+                android:layout_margin="@dimen/survey_snow_state_button_margin"
+                android:background="@drawable/grass"
+                android:text="@string/survey_snow_state_snow_free_green_label"
+                android:textColor="@color/OFF_WHITE"
+                android:textSize="@dimen/survey_snow_state_button_text" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/survey_snow_state_explanation_margin"
+                android:gravity="center"
+                android:text="@string/survey_snow_state_dormant_explanation" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/survey_snow_state_explanation_margin"
+                android:layout_marginRight="@dimen/survey_snow_state_explanation_margin"
+                android:gravity="center"
+                android:text="@string/survey_snow_state_green_explanation" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
