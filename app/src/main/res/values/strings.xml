@@ -22,6 +22,7 @@
 
     <!-- Survey Strings -->
     <string name="next">Next</string>
+    <string name="submit">Submit</string>
     <string name="title_location">Location</string>
     <string name="title_start_time">Start Time</string>
     <string name="title_sky_analysis">Sky Analysis</string>
@@ -89,7 +90,7 @@
     <string name="survey_additional_data_snow_depth_label">Snow Depth:</string>
     <string name="survey_additional_data_weight_snow_label">Tube + Cap + Snow Weight:</string>
     <string name="survey_additional_data_weight_no_snow_label">Tube + Cap Weight:</string>
-    <string name="survey_additional_data_snow_temperature">Snow Temperature:</string>
+    <string name="survey_additional_data_snow_temperature_label">Snow Temperature:</string>
     <!-- Notes -->
     <string name="survey_notes_question">Observation notes (ie: debris on snow, ice surface, footprints, rain-on-snow)</string>
     <!-- End Time -->
@@ -97,6 +98,7 @@
     <string name="survey_end_time_time_label">Time:</string>
     <string name="survey_end_time_set_time_label">Set Time</string>
     <!-- Summary -->
+    <string name="survey_summary_title">Summary</string>
     <string name="survey_summary_location_title">Location</string>
 
 </resources>

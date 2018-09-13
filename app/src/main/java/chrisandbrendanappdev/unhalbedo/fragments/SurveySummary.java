@@ -13,11 +13,11 @@ import chrisandbrendanappdev.unhalbedo.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SurveyAdditionalData extends SurveyFragment {
+public class SurveySummary extends SurveyFragment {
 
-    private Button butNext;
+    private Button subButton;
 
-    public SurveyAdditionalData() {
+    public SurveySummary() {
         // Required empty public constructor
     }
 
@@ -26,26 +26,27 @@ public class SurveyAdditionalData extends SurveyFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.survey_additional_data_fragment, container, false);
+        View v = inflater.inflate(R.layout.survey_summary_fragment, container, false);
 
         init(v);
 
-        getActivity().setTitle("Additional Data");
+        getActivity().setTitle("Summary");
 
         return v;
     }
 
     @Override
     void getViews(View v) {
-        butNext = (Button) v.findViewById(R.id.survey_additional_data_next);
+        subButton = (Button) v.findViewById(R.id.survey_summary_submit);
     }
 
     @Override
     void addOnClickListeners() {
-        butNext.setOnClickListener(new View.OnClickListener() {
+        subButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveDataAndContinue(new SurveyNotes());
+                //TODO: Send data to server
+                getActivity().finish();
             }
         });
     }

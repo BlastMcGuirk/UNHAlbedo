@@ -6,8 +6,9 @@
     tools:context="chrisandbrendanappdev.unhalbedo.fragments.SurveyAdditionalData">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginBottom="@dimen/survey_question_margin_bottom"
         android:layout_marginTop="@dimen/survey_question_margin_top"
         android:gravity="center"
@@ -18,41 +19,50 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="@string/survey_additional_data_snow_depth_label" />
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/survey_additional_data_snow_depth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <EditText
-                android:id="@+id/survey_additional_data_snow_depth"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <Spinner
-            android:id="@+id/survey_additional_data_snow_depth_unit"
-            style="@style/Base.Widget.AppCompat.Spinner.Underlined"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="1.5dp"/>
-
-    </LinearLayout>
+        android:ems="10"
+        android:inputType="number" />
 
     <TextView
-        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView" />
+        android:text="@string/survey_additional_data_snow_temperature_label" />
+
+    <EditText
+        android:id="@+id/survey_additional_data_snow_temperature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_additional_data_weight_no_snow_label" />
+
+    <EditText
+        android:id="@+id/survey_additional_data_weight_no_snow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_additional_data_weight_snow_label" />
+
+    <EditText
+        android:id="@+id/survey_additional_data_weight_snow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number" />
 
     <Button
         android:id="@+id/survey_additional_data_next"

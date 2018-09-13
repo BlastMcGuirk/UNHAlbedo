@@ -32,6 +32,8 @@ public class SurveyNotes extends SurveyFragment {
 
         init(v);
 
+        getActivity().setTitle("Notes");
+
         return v;
     }
 

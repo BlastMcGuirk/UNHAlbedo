@@ -1,6 +1,5 @@
 package chrisandbrendanappdev.unhalbedo.fragments;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,12 +16,12 @@ import chrisandbrendanappdev.unhalbedo.R;
 public class SurveyIncomingShortwaves extends SurveyFragment {
 
     private EditText in1, in2, in3;
+    private double cur1, cur2, cur3;
     private Button butNext;
 
     public SurveyIncomingShortwaves() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,6 +30,8 @@ public class SurveyIncomingShortwaves extends SurveyFragment {
         View v = inflater.inflate(R.layout.survey_incoming_shortwaves_fragment, container, false);
 
         init(v);
+
+        getActivity().setTitle("Incoming Shortwaves");
 
         return v;
     }
@@ -45,9 +46,6 @@ public class SurveyIncomingShortwaves extends SurveyFragment {
 
     @Override
     void addOnClickListeners() {
-        in1.setOnFocusChangeListener(dataCheck);
-        in2.setOnFocusChangeListener(dataCheck);
-        in3.setOnFocusChangeListener(dataCheck);
         butNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,21 +61,19 @@ public class SurveyIncomingShortwaves extends SurveyFragment {
 
     @Override
     void fillInEmptyValues() {
-        double i1, i2, i3;
-
-        i1 = data.getIncoming1();
-        if (i1 != -999) {
-            in1.setText(i1 + "");
+        cur1 = data.getIncoming1();
+        if (cur1 != -999) {
+            in1.setText(cur1 + "");
         }
 
-        i2 = data.getIncoming2();
-        if (i2 != -999) {
-            in2.setText(i2 + "");
+        cur2 = data.getIncoming2();
+        if (cur2 != -999) {
+            in2.setText(cur2 + "");
         }
 
-        i3 = data.getIncoming3();
-        if (i3 != -999) {
-            in3.setText(i3 + "");
+        cur3 = data.getIncoming3();
+        if (cur3 != -999) {
+            in3.setText(cur3 + "");
         }
     }
 
@@ -123,7 +119,8 @@ public class SurveyIncomingShortwaves extends SurveyFragment {
     private View.OnFocusChangeListener dataCheck = new View.OnFocusChangeListener() {
         @Override
         public void onFocusChange(View v, boolean hasFocus) {
-            entriesAreValid();
+            if (hasFocus)
+                entriesAreValid();
         }
     };
 }

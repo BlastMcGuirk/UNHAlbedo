@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -79,8 +80,20 @@ public class SurveyStartTime extends SurveyFragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                data.setStartCalendar(calendar);
-                saveDataAndContinue(new SurveySkyAnalysis());
+                System.out.println("-------------------------------------");
+                boolean daySet = !day.getText().toString().equals("");
+                boolean timeSet = !time.getText().toString().equals("");
+                if (daySet && timeSet) {
+                    System.out.println("Doin it!!!");
+                    data.setStartCalendar(calendar);
+                    saveDataAndContinue(new SurveySkyAnalysis());
+                }
+                if (!daySet) {
+                    day.setError("Please enter a date");
+                }
+                if (!timeSet) {
+                    time.setError("Please enter a time");
+                }
             }
         });
     }

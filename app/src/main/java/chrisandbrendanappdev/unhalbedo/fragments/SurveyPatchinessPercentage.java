@@ -35,6 +35,8 @@ public class SurveyPatchinessPercentage extends SurveyFragment {
 
         init(v);
 
+        getActivity().setTitle("Patchiness Percentage");
+
         return v;
     }
 
@@ -50,7 +52,10 @@ public class SurveyPatchinessPercentage extends SurveyFragment {
         slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                valueDisplay.setText(progress + "% Covered");
+                int dispProg = progress + 5;
+                dispProg /= 10;
+                dispProg *= 10;
+                valueDisplay.setText(dispProg + "% Covered");
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -58,15 +63,25 @@ public class SurveyPatchinessPercentage extends SurveyFragment {
             }
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                data.setPatchinessPercentage(seekBar.getProgress());
+                int dispProg = seekBar.getProgress() + 5;
+                dispProg /= 10;
+                dispProg *= 10;
+                data.setPatchinessPercentage(dispProg);
             }
         });
         butNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (slider.getProgress() == 100) { data.setSnowState(DataEnums.SnowState.SNOW_COVERED); }
-                else if (slider.getProgress() == 0) { data.setSnowState(DataEnums.SnowState.SNOW_FREE_GREEN); }
-                saveDataAndContinue(new SurveyGroundCover());
+                if (slider.getProgress() == 0) {
+                    data.setSnowState(DataEnums.SnowState.SNOW_FREE_GREEN);
+                    saveDataAndContinue(new SurveyGroundCover());
+                }
+                else {
+                    if (slider.getProgress() == 100) {
+                        data.setSnowState(DataEnums.SnowState.SNOW_COVERED);
+                    }
+                    saveDataAndContinue(new SurveySnowSurfaceAge());
+                }
             }
         });
     }

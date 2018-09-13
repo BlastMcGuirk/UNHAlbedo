@@ -7,11 +7,20 @@ package chrisandbrendanappdev.unhalbedo.data;
 public class DataEnums {
 
     public enum StationID {
-        NHCS10("NH-CS-10", 1, 1), NHMR4("NH-MR-4", 2, 2), NHHL25("NH-HL-25", 3, 3),
-        NHCH19("NH-CH-19", 4, 4), NHHL58("NH-HL-58", 5, 5), NHST99("NH-ST-99", 6, 6),
-        NHRC46("NH-RC-46", 7, 7), NHMR6("NH-MR-6", 8, 8), NHMR58("NH-MR-58", 9, 9),
-        NHGR1("NH-GR-1", 10, 10), NHGR11("NH-GR-11", 11, 11), NHBK24("NH-BK-24", 12, 12),
-        NHCS7("NH-CS-7", 13, 13), NONE("None", 0, 0);
+        NONE("None", 0, 0),
+        NHCH19("NH-CH-19", 42.93995, -72.313214),
+        NHCS10("NH-CS-10", 44.388238, -71.269535),
+        NHMR4("NH-MR-4", 43.149944, -71.556467),
+        NHHL25("NH-HL-25", 42.914089, -71.610217),
+        NHHL58("NH-HL-58", 42.739811, -71.472811),
+        NHST99("NH-ST-99", 43.10876, -70.94871),
+        NHRC46("NH-RC-46", 43.0171, -70.999),
+        NHMR6("NH-MR-6", 43.52, -71.819),
+        NHMR58("NH-MR-58", 43.2783, -71.4697),
+        NHGR1("NH-GR-1", 43.5949, -71.7414),
+        NHGR11("NH-GR-11", 43.760317, -71.688856),
+        NHBK24("NH-BK-24", 43.437617, -71.213364),
+        NHCS7("NH-CS-7", 44.49611, -71.57639);
 
         private String stationName;
         private double latitude, longitude;

@@ -31,6 +31,8 @@ public class SurveySnowState extends SurveyFragment {
 
         init(v);
 
+        getActivity().setTitle("Snow State");
+
         return v;
     }
 

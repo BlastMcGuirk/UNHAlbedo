@@ -1,6 +1,7 @@
 package chrisandbrendanappdev.unhalbedo.fragments;
 
 
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -29,6 +30,8 @@ public class SurveyGroundCover extends SurveyFragment {
         View v = inflater.inflate(R.layout.survey_ground_cover_fragment, container, false);
 
         init(v);
+
+        getActivity().setTitle("Ground Cover");
 
         return v;
     }
@@ -93,7 +96,6 @@ public class SurveyGroundCover extends SurveyFragment {
 
     private void continueSurvey(DataEnums.GroundCover ground) {
         data.setGroundCover(ground);
-        // TODO: Go to incoming
         saveDataAndContinue(new SurveyIncomingShortwaves());
     }
 }

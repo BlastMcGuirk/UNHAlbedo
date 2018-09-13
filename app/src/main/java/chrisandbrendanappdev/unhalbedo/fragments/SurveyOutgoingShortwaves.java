@@ -32,6 +32,8 @@ public class SurveyOutgoingShortwaves extends SurveyFragment {
 
         init(v);
 
+        getActivity().setTitle("Outgoing Shortwaves");
+
         return v;
     }
 
@@ -45,18 +47,14 @@ public class SurveyOutgoingShortwaves extends SurveyFragment {
 
     @Override
     void addOnClickListeners() {
-        out1.setOnFocusChangeListener(dataCheck);
-        out2.setOnFocusChangeListener(dataCheck);
-        out3.setOnFocusChangeListener(dataCheck);
         butNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (entriesAreValid()) {
                     data.setOutgoing1(Double.parseDouble(out1.getText().toString()));
-                    data.setOutgoing2(Double.parseDouble(out1.getText().toString()));
-                    data.setOutgoing3(Double.parseDouble(out1.getText().toString()));
-                    // TODO: Go to additional data instead of notes
-                    saveDataAndContinue(new SurveyNotes());
+                    data.setOutgoing2(Double.parseDouble(out2.getText().toString()));
+                    data.setOutgoing3(Double.parseDouble(out3.getText().toString()));
+                    saveDataAndContinue(new SurveyAdditionalData());
                 }
             }
         });
@@ -114,7 +112,7 @@ public class SurveyOutgoingShortwaves extends SurveyFragment {
             out2.setError("Number doesn't make sense");
         } catch (IllegalArgumentException e) {
             allValid = false;
-            out1.setError("Incoming must be greater than outgoing");
+            out2.setError("Incoming must be greater than outgoing");
         }
 
         try {
@@ -130,17 +128,9 @@ public class SurveyOutgoingShortwaves extends SurveyFragment {
             out3.setError("Number doesn't make sense");
         } catch (IllegalArgumentException e) {
             allValid = false;
-            out1.setError("Incoming must be greater than outgoing");
+            out3.setError("Incoming must be greater than outgoing");
         }
 
         return allValid;
     }
-
-    private View.OnFocusChangeListener dataCheck = new View.OnFocusChangeListener() {
-        @Override
-        public void onFocusChange(View v, boolean hasFocus) {
-            entriesAreValid();
-        }
-    };
-
 }

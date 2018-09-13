@@ -59,7 +59,7 @@ public class DataSubmission implements Serializable {
 
     public DataSubmission() {
         stationID = null;
-        latitude = longitude = -999;
+        latitude = longitude = 0;
         startCalendar = null;
         cloudCoverage = null;
         snowState = null;

@@ -25,6 +25,7 @@ public class SurveyLocation extends SurveyFragment {
     private ArrayAdapter<DataEnums.StationID> spinnerAdapter;
 
     private EditText latitude, longitude;
+    private double curLat, curLon;
     private Button useCurrentLocation, next;
 
     public SurveyLocation() {
@@ -66,8 +67,10 @@ public class SurveyLocation extends SurveyFragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 DataEnums.StationID station = spinnerAdapter.getItem(position);
-                latitude.setText(station.getLatitude() + "");
-                longitude.setText(station.getLongitude() + "");
+                if (position != 0) {
+                    latitude.setText(station.getLatitude() + "");
+                    longitude.setText(station.getLongitude() + "");
+                }
             }
 
             @Override
@@ -80,6 +83,22 @@ public class SurveyLocation extends SurveyFragment {
             public void onClick(View v) {
                 // TODO: Add location services to use the person's current location
                 Toast.makeText(getActivity(), "Feature not enabled yet", Toast.LENGTH_SHORT).show();
+            }
+        });
+        latitude.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!latitude.getText().toString().equals(String.valueOf(curLat))) {
+                    dutyStations.setSelection(spinnerAdapter.getPosition(DataEnums.StationID.NONE));
+                }
+            }
+        });
+        longitude.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!longitude.getText().toString().equals(String.valueOf(curLon))) {
+                    dutyStations.setSelection(spinnerAdapter.getPosition(DataEnums.StationID.NONE));
+                }
             }
         });
         next.setOnClickListener(new View.OnClickListener() {
@@ -112,9 +131,11 @@ public class SurveyLocation extends SurveyFragment {
 
         // TODO: Check profile for default duty station
         // Temporarily set default to NH-ST-99
-        DataEnums.StationID defaultStation = DataEnums.StationID.NONE;
+        DataEnums.StationID defaultStation = DataEnums.StationID.NHST99;
         dutyStations.setSelection(spinnerAdapter.getPosition(defaultStation));
-        latitude.setText(defaultStation.getLatitude() + "");
-        longitude.setText(defaultStation.getLongitude() + "");
+        curLat = defaultStation.getLatitude();
+        curLon = defaultStation.getLongitude();
+        latitude.setText(curLat + "");
+        longitude.setText(curLon + "");
     }
 }

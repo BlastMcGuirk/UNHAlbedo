@@ -1,12 +1,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="layout.SurveySummary">
+    tools:context="chrisandbrendanappdev.unhalbedo.fragments.SurveySummary">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/survey_question_margin_bottom"
+        android:layout_marginTop="@dimen/survey_question_margin_top"
+        android:text="@string/title_summary"
+        android:textColor="@color/BLACK"
+        android:textSize="@dimen/survey_question_size" />
+
+    <Button
+        android:id="@+id/survey_summary_submit"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/submit"
+        android:textSize="@dimen/survey_next_text_size" />
 
 </LinearLayout>

@@ -43,6 +43,8 @@ public class SurveyEndTime extends SurveyFragment {
 
         init(v);
 
+        getActivity().setTitle("End Time");
+
         return v;
     }
 
@@ -65,7 +67,7 @@ public class SurveyEndTime extends SurveyFragment {
             @Override
             public void onClick(View v) {
                 data.setEndCalendar(calendar);
-                saveDataAndContinue(new SurveySkyAnalysis());
+                saveDataAndContinue(new SurveySummary());
             }
         });
     }

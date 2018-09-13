@@ -36,6 +36,8 @@ public class SurveySnowSurfaceAge extends SurveyFragment {
 
         init(v);
 
+        getActivity().setTitle("Snow Surface Age");
+
         return v;
     }
 
@@ -53,7 +55,7 @@ public class SurveySnowSurfaceAge extends SurveyFragment {
             @Override
             public void onClick(View v) {
                 data.setSnowSurfaceAge((DataEnums.SnowSurfaceAge) age.getSelectedItem());
-                saveDataAndContinue(new SurveyIncomingShortwaves());
+                saveDataAndContinue(new SurveyGroundCover());
             }
         });
     }
