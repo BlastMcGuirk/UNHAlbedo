@@ -3,6 +3,7 @@
 
     <!-- Main Strings -->
     <string name="username">username</string>
+    <string name="password">password</string>
     <string name="main_not_logged_in">Not logged in\n\nClick Profile button to sign in</string>
     <string name="main_logged_in">Logged in as: </string>
 
@@ -99,6 +100,27 @@
     <string name="survey_end_time_set_time_label">Set Time</string>
     <!-- Summary -->
     <string name="survey_summary_title">Summary</string>
-    <string name="survey_summary_location_title">Location</string>
+        <!-- Location -->
+    <string name="survey_summary_header_location">Location</string>
+    <string name="survey_summary_station_ID">Station ID</string>
+    <string name="survey_summary_latitude">Latitude</string>
+    <string name="survey_summary_longitude">Longitude</string>
+        <!-- Date and Time -->
+    <string name="survey_summary_header_date_time">Date and Time</string>
+    <string name="survey_summary_date">Date</string>
+    <string name="survey_summary_start_time">Start Time</string>
+    <string name="survey_summary_end_time">End Time</string>
+        <!-- Albedo -->
+    <string name="survey_summary_header_albedo">Albedo</string>
+    <string name="survey_summary_incoming_1">Incoming 1</string>
+    <string name="survey_summary_incoming_2">Incoming 2</string>
+    <string name="survey_summary_incoming_3">Incoming 3</string>
+    <string name="survey_summary_outgoing_1">Outgoing 1</string>
+    <string name="survey_summary_outgoing_2">Outgoing 2</string>
+    <string name="survey_summary_outgoing_3">Outgoing 3</string>
+    <string name="survey_summary_albedo">Albedo</string>
+        <!-- Sky and Ground -->
+    <string name="survey_summary_header_sky_ground">Sky and Ground</string>
+    <string name="survey_summary_sky">Sky</string>
 
 </resources>

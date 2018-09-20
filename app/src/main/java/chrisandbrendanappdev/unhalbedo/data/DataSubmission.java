@@ -1,5 +1,8 @@
 package chrisandbrendanappdev.unhalbedo.data;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -8,6 +11,8 @@ import java.util.Date;
 import java.util.Locale;
 
 import chrisandbrendanappdev.unhalbedo.data.DataEnums.*;
+
+import static android.R.id.list;
 
 /**
  * Stores all the information that is submitted in a submission
@@ -100,44 +105,53 @@ public class DataSubmission implements Serializable {
         return output;
     }
 
-    public String[] getDataArray() {
-        ArrayList<String> list = new ArrayList<>();
+    public JSONObject getJSON() {
+        JSONObject json = new JSONObject();
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy", Locale.US);
         SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm aa", Locale.US);
 
-        list.add(stationID.toString());
-        list.add(String.valueOf(latitude));
-        list.add(String.valueOf(longitude));
+        try {
+            // id
+            // user - users id
+            // date - date of submission (now)
 
-        list.add(dateFormat.format(startCalendar));
-        list.add(timeFormat.format(startCalendar));
+            json.put("station_Number", stationID.toString());
+            json.put("latitude", latitude);
+            json.put("longitude", longitude);
 
-        list.add(String.valueOf(incoming1));
-        list.add(String.valueOf(incoming2));
-        list.add(String.valueOf(incoming3));
-        list.add(String.valueOf(outgoing1));
-        list.add(String.valueOf(outgoing2));
-        list.add(String.valueOf(outgoing3));
+            json.put("observation_Date", dateFormat.format(startCalendar));
+            json.put("observation_Time", timeFormat.format(startCalendar));
+            json.put("end_Albedo_Observation_time", timeFormat.format(endCalendar));
 
-        double albedo = ((outgoing1 / incoming1) + (outgoing2 / incoming2) + (outgoing3 / incoming3)) / 3.0;
-        list.add(String.valueOf(albedo));
+            json.put("cloud_Coverage", cloudCoverage.toString());
+            json.put("snow_State", snowState.toString());
+            json.put("Patchiness_percentage", patchinessPercentage);
+            json.put("snow_surface_Age", snowSurfaceAge.toString());
 
-        list.add(cloudCoverage.toString());
-        list.add(snowState.toString());
-        list.add(groundCover.toString());
-        list.add(patchinessPercentage + "%");
-        list.add(snowSurfaceAge.toString());
+            json.put("incoming_Shortwave_1", incoming1);
+            json.put("incoming_Shortwave_2", incoming2);
+            json.put("incoming_Shortwave_3", incoming3);
+            json.put("outgoing_Shortwave_1", outgoing1);
+            json.put("outgoing_Shortwave_2", outgoing2);
+            json.put("outgoing_Shortwave_3", outgoing3);
 
-        list.add(String.valueOf(snowDepth));
-        list.add(String.valueOf(snowWeightWithTube));
-        list.add(String.valueOf(snowTubeWeight));
-        list.add(String.valueOf(temperature));
-        list.add(String.valueOf(snowMelt));
+            json.put("surface_Skin_Temperature", temperature);
+            json.put("snow_Depth", snowDepth);
+            json.put("tube_cap_weight", snowTubeWeight);
+            json.put("tube_cap_snow_weight", snowWeightWithTube);
 
-        list.add(notes);
-        list.add(timeFormat.format(endCalendar));
+            json.put("observation_Notes", notes);
 
-        return (String[]) list.toArray();
+            double albedo = ((outgoing1 / incoming1) + (outgoing2 / incoming2) + (outgoing3 / incoming3)) / 3.0;
+            json.put("albedo", albedo);
+
+            double snowDensity = 0;
+            json.put("snow_density", snowDensity);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return json;
     }
 
     public StationID getStationID() {return stationID;}

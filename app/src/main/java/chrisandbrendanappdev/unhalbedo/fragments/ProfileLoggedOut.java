@@ -1,6 +1,7 @@
 package chrisandbrendanappdev.unhalbedo.fragments;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -70,94 +71,34 @@ public class ProfileLoggedOut extends Fragment {
 
     private void addOnClickListeners() {
         logIn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ApplySharedPref")
             @Override
             public void onClick(View v) {
-                // TODO: Log in to server and redirect to main page
-                String username = "CoCoRAHS5"; //usernameText.getText().toString();
-                String password = "A1b3d02011!"; //passwordText.getText().toString();
-                String token = "";
-                String urlToken = "http://albedo.gsscdev.com/api/auth/get_token";
-                String urlLogin = "http://albedo.gsscdev.com/api/auth/login";
+                String urlToken = "http://albedo.gsscdev.com/api/auth/get_token/";
+                String username = usernameText.getText().toString(); //"CoCoRAHS5";
+                String password = passwordText.getText().toString(); //"A1b3d02011!"; //passwordText.getText().toString() == "1" ?  : "A1b3d02011";
+                String token;
+
+                // Check for admin login
+                if (username.equals("admin")) {
+                    username = "CoCoRAHS5";
+                    password = "A1b3d02011!";
+                }
 
                 // get token
-                JSONObject tokenObj = LoginRequest.getAuthToken(urlToken, username, password);
-                System.out.println(tokenObj);
-                try {
-                    token = tokenObj.getString("token");
-                } catch (Exception ignored) {}
+                token = LoginRequest.getAuthToken(urlToken, username, password);
 
                 if (!token.equals("")) {
                     SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string.username), Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString(getString(R.string.username), username);
+                    editor.putString(getString(R.string.password), password);
                     editor.commit();
 
                     getActivity().finish();
                 } else {
                     passwordText.setError("Invalid username/password");
                 }
-
-                /*try {
-                    // make a get request
-                    URL url = new URL(urlString);
-                    HttpURLConnection http = (HttpURLConnection) url.openConnection();
-                    http.setRequestMethod("GET");
-
-                    // read the get request
-                    BufferedReader buff = new BufferedReader(new InputStreamReader(http.getInputStream()));
-                    String line;
-
-                    // get the csrfmiddlewaretoken
-                    while ((line = buff.readLine()) != null) {
-                        if (line.contains("csrf")) {
-                            System.out.println("--------------------------> > > > > > " + line);
-                            int startIndex = line.indexOf("value='") + 7;
-                            csrfmiddlewaretoken = line.substring(startIndex, startIndex + 32);
-                        }
-                    }
-                    buff.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }*/
-
-                // POST
-
-
-                /*try {
-                    String query = String.format("username=%s&password=%s",
-                            URLEncoder.encode(username, charset),
-                            URLEncoder.encode(password, charset));
-                    URLConnection connection = new URL(url).openConnection();
-
-                    connection.setDoOutput(true);
-                    connection.setRequestProperty("Accept-Charset", charset);
-                    connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=" + charset);
-
-                    OutputStream output = connection.getOutputStream();
-                    output.write(query.getBytes(charset));
-
-                    System.out.println(((HttpURLConnection) connection).getResponseCode());
-                    InputStream response = connection.getInputStream();
-
-                    System.out.println(response);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }*/
-
-
-                /*// GET REQUEST
-                try {
-                    System.out.println("Now opening connection to: " + url);
-                    InputStream response = new URL(url + "?" + "username=" + username + "&password=" + password).openStream();
-                    Scanner scanner = new Scanner(response);
-                    String responseBody = scanner.useDelimiter("\\A").next();
-                    System.out.println(responseBody);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }*/
-
-                //Toast.makeText(getContext(), "Log in", Toast.LENGTH_SHORT).show();
-
             }
         });
         forgotPassword.setOnClickListener(new View.OnClickListener() {
