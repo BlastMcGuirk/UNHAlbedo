@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Spinner;
 
 import chrisandbrendanappdev.unhalbedo.R;
@@ -19,7 +20,9 @@ import chrisandbrendanappdev.unhalbedo.data.DataEnums;
 public class SurveySnowSurfaceAge extends SurveyFragment {
 
     private Spinner age;
-    private ArrayAdapter<DataEnums.SnowSurfaceAge> spinnerAdapter;
+    ArrayAdapter<DataEnums.SnowSurfaceAge> spinnerAdapter;
+
+    private CheckBox snowMelt;
 
     private Button butNext;
 
@@ -42,6 +45,7 @@ public class SurveySnowSurfaceAge extends SurveyFragment {
     @Override
     void getViews(View v) {
         age = (Spinner) v.findViewById(R.id.survey_snow_surface_age_spinner);
+        snowMelt = (CheckBox) v.findViewById(R.id.survey_snow_surface_age_melt);
         butNext = (Button) v.findViewById(R.id.survey_snow_surface_age_next);
 
         setupSpinner();
@@ -53,6 +57,7 @@ public class SurveySnowSurfaceAge extends SurveyFragment {
             @Override
             public void onClick(View v) {
                 data.setSnowSurfaceAge((DataEnums.SnowSurfaceAge) age.getSelectedItem());
+                data.setSnowMelt(snowMelt.isActivated());
                 saveDataAndContinue(new SurveyGroundCover());
             }
         });
@@ -65,5 +70,15 @@ public class SurveySnowSurfaceAge extends SurveyFragment {
                 DataEnums.SnowSurfaceAge.values()
         );
         age.setAdapter(spinnerAdapter);
+    }
+
+    @Override
+    void fillInEmptyValues() {
+        if (data.getSnowSurfaceAge() != null) {
+            age.setSelection(spinnerAdapter.getPosition(data.getSnowSurfaceAge()));
+        }
+        if (data.isSnowMelt()) {
+            snowMelt.setActivated(true);
+        }
     }
 }

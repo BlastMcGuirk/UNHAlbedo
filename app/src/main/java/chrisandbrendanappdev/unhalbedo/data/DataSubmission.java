@@ -39,6 +39,7 @@ public class DataSubmission implements Serializable {
 
     // Snow Surface Age
     private SnowSurfaceAge snowSurfaceAge;
+    private boolean snowMelt;
 
     // Ground Cover
     private GroundCover groundCover;
@@ -54,7 +55,6 @@ public class DataSubmission implements Serializable {
     private double snowWeightWithTube;
     private double snowTubeWeight;
     private double temperature;
-    private boolean snowMelt;
 
     // Notes
     private String notes;
@@ -70,6 +70,7 @@ public class DataSubmission implements Serializable {
         snowState = null;
         patchinessPercentage = -999;
         snowSurfaceAge = null;
+        snowMelt = false;
         groundCover = null;
         incoming1 = incoming2 = incoming3 = -999;
         outgoing1 = outgoing2 = outgoing3 = -999;
@@ -77,7 +78,6 @@ public class DataSubmission implements Serializable {
         snowWeightWithTube = -999;
         snowTubeWeight = -999;
         temperature = -999;
-        snowMelt = false;
         notes = "";
         endCalendar = null;
     }
@@ -92,6 +92,7 @@ public class DataSubmission implements Serializable {
         output += "Snow State: " + snowState + '\n';
         output += "Patchiness Percentage: " + patchinessPercentage + "%" + '\n';
         output += "Snow Surface Age: " + snowSurfaceAge + '\n';
+        output += "Snow Melt: " + snowMelt + '\n';
         output += "Ground Cover: " + groundCover + '\n';
         output += "Incoming: " + incoming1 + " - " + incoming2 + " - " + incoming3 + '\n';
         output += "Outgoing: " + outgoing1 + " - " + outgoing2 + " - " + outgoing3 + '\n';
@@ -99,7 +100,6 @@ public class DataSubmission implements Serializable {
         output += "Snow Weight w/ Tube: " + snowWeightWithTube + '\n';
         output += "Snow Tube Weight: " + snowTubeWeight + '\n';
         output += "Temperature: " + temperature + '\n';
-        output += "Snow Melt: " + snowMelt + '\n';
         output += "Notes: " + notes + '\n';
         output += "End Time: " + endCalendar.getTime();
         return output;
@@ -127,6 +127,7 @@ public class DataSubmission implements Serializable {
             json.put("snow_State", snowState.toString());
             json.put("Patchiness_percentage", patchinessPercentage);
             json.put("snow_surface_Age", snowSurfaceAge.toString());
+            json.put("snow_Melt", snowMelt);
 
             json.put("incoming_Shortwave_1", incoming1);
             json.put("incoming_Shortwave_2", incoming2);
@@ -178,6 +179,9 @@ public class DataSubmission implements Serializable {
     public SnowSurfaceAge getSnowSurfaceAge() {return snowSurfaceAge;}
     public void setSnowSurfaceAge(SnowSurfaceAge snowSurfaceAge) {this.snowSurfaceAge = snowSurfaceAge;}
 
+    public boolean isSnowMelt() {return snowMelt;}
+    public void setSnowMelt(boolean snowMelt) {this.snowMelt = snowMelt;}
+
     public GroundCover getGroundCover() {return groundCover;}
     public void setGroundCover(GroundCover groundCover) {this.groundCover = groundCover;}
 
@@ -208,11 +212,8 @@ public class DataSubmission implements Serializable {
     public double getSnowTubeWeight() {return snowTubeWeight;}
     public void setSnowTubeWeight(double snowTubeWeight) {this.snowTubeWeight = snowTubeWeight;}
 
-    public double getTemperature() {return temperature;}
     public void setTemperature(double temperature) {this.temperature = temperature;}
-
-    public boolean isSnowMelt() {return snowMelt;}
-    public void setSnowMelt(boolean snowMelt) {this.snowMelt = snowMelt;}
+    public double getTemperature() {return temperature;}
 
     public String getNotes() {return notes;}
     public void setNotes(String notes) {this.notes = notes;}

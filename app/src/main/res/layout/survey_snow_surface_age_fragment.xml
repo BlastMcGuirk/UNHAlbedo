@@ -26,6 +26,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <CheckBox
+        android:id="@+id/survey_snow_surface_age_melt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/survey_snow_surface_age_snow_melt" />
+
     <Button
         android:id="@+id/survey_snow_surface_age_next"
         style="@style/Widget.AppCompat.Button.Borderless"

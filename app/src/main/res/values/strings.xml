@@ -77,6 +77,7 @@
     <string name="survey_ground_cover_other_label">Other</string>
     <!-- Snow Surface Age -->
     <string name="survey_snow_surface_age_spinner_label">Age:</string>
+    <string name="survey_snow_surface_age_snow_melt">Snow melt</string>
     <!-- Incoming Shortwave -->
     <string name="survey_incoming_shortwave_question">What are the incoming shortwave readings?</string>
     <string name="survey_incoming_shortwave_label_1">Incoming Shortwave 1:</string>
