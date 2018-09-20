@@ -17,20 +17,13 @@ public class SurveySummary extends SurveyFragment {
 
     private Button subButton;
 
-    public SurveySummary() {
-        // Required empty public constructor
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.survey_summary_fragment, container, false);
 
-        init(v);
-
-        getActivity().setTitle("Summary");
+        init(v, getString(R.string.title_summary));
 
         return v;
     }

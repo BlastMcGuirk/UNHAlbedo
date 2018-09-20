@@ -33,9 +33,7 @@ public class SurveyPatchinessPercentage extends SurveyFragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.survey_patchiness_percentage_fragment, container, false);
 
-        init(v);
-
-        getActivity().setTitle("Patchiness Percentage");
+        init(v, getString(R.string.title_patchiness_percentage));
 
         return v;
     }

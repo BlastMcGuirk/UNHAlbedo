@@ -28,11 +28,6 @@ public class SurveyLocation extends SurveyFragment {
     private double curLat, curLon;
     private Button useCurrentLocation, next;
 
-    public SurveyLocation() {
-        // Required empty public constructor
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,10 +35,7 @@ public class SurveyLocation extends SurveyFragment {
         View v = inflater.inflate(R.layout.survey_location_fragment, container, false);
 
         // Initialize the fragment according to the SurveyFragment abstract class
-        init(v);
-
-        // Rename title of activity
-        getActivity().setTitle("Location");
+        init(v, getString(R.string.title_location));
 
         return v;
     }

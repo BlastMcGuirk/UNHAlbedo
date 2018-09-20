@@ -30,9 +30,7 @@ public class SurveyNotes extends SurveyFragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.survey_notes_fragment, container, false);
 
-        init(v);
-
-        getActivity().setTitle("Notes");
+        init(v, getString(R.string.title_notes));
 
         return v;
     }

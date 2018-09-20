@@ -46,9 +46,7 @@ public class SurveyStartTime extends SurveyFragment {
         dateFormat = new SimpleDateFormat("MMM d, yyyy", Locale.US);
         timeFormat = new SimpleDateFormat("h:mm aa", Locale.US);
 
-        init(v);
-
-        getActivity().setTitle("Start Time");
+        init(v, getString(R.string.title_start_time));
 
         return v;
     }
@@ -80,11 +78,9 @@ public class SurveyStartTime extends SurveyFragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("-------------------------------------");
                 boolean daySet = !day.getText().toString().equals("");
                 boolean timeSet = !time.getText().toString().equals("");
                 if (daySet && timeSet) {
-                    System.out.println("Doin it!!!");
                     data.setStartCalendar(calendar);
                     saveDataAndContinue(new SurveySkyAnalysis());
                 }

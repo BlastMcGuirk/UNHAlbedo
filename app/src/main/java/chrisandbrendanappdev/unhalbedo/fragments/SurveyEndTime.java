@@ -41,9 +41,7 @@ public class SurveyEndTime extends SurveyFragment {
         calendar = Calendar.getInstance();
         timeFormat = new SimpleDateFormat("h:mm aa", Locale.US);
 
-        init(v);
-
-        getActivity().setTitle("End Time");
+        init(v, getString(R.string.title_end_time));
 
         return v;
     }

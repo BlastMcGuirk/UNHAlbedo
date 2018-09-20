@@ -17,8 +17,9 @@ abstract class SurveyFragment extends Fragment {
     DataProvider dataProvider;
     DataSubmission data;
 
-    public void init(View v) {
+    public void init(View v, String title) {
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        getActivity().setTitle(title);
         getData();
         getViews(v);
         fillInEmptyValues();

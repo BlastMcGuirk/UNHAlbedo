@@ -30,9 +30,7 @@ public class SurveyOutgoingShortwaves extends SurveyFragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.survey_outgoing_shortwaves_fragment, container, false);
 
-        init(v);
-
-        getActivity().setTitle("Outgoing Shortwaves");
+        init(v, getString(R.string.title_outgoing_shortwaves));
 
         return v;
     }

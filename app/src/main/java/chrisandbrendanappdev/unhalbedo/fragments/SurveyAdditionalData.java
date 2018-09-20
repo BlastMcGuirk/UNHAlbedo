@@ -34,9 +34,7 @@ public class SurveyAdditionalData extends SurveyFragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.survey_additional_data_fragment, container, false);
 
-        init(v);
-
-        getActivity().setTitle("Additional Data");
+        init(v, getString(R.string.title_additional_data));
 
         return v;
     }

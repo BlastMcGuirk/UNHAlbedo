@@ -34,9 +34,7 @@ public class SurveySnowSurfaceAge extends SurveyFragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.survey_snow_surface_age_fragment, container, false);
 
-        init(v);
-
-        getActivity().setTitle("Snow Surface Age");
+        init(v, getString(R.string.title_snow_surface_age));
 
         return v;
     }
