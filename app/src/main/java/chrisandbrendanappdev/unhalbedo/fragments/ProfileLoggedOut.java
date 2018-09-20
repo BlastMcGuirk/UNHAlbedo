@@ -93,6 +93,7 @@ public class ProfileLoggedOut extends Fragment {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString(getString(R.string.username), username);
                     editor.putString(getString(R.string.password), password);
+                    editor.putString(getString(R.string.token), token);
                     editor.commit();
 
                     getActivity().finish();

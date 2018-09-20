@@ -1,6 +1,7 @@
 package chrisandbrendanappdev.unhalbedo.fragments;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -68,12 +69,13 @@ public class ProfileLoggedIn extends Fragment {
             }
         });
         logOut.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ApplySharedPref")
             @Override
             public void onClick(View v) {
-                // TODO: Log out
-                // Toast.makeText(getContext(), "Log out", Toast.LENGTH_SHORT).show();
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(getString(R.string.username), "");
+                editor.putString(getString(R.string.password), "");
+                editor.putString(getString(R.string.token), "");
                 editor.commit();
 
                 getActivity().finish();
@@ -82,9 +84,10 @@ public class ProfileLoggedIn extends Fragment {
     }
 
     private void fillData() {
-        // TODO: Fill in account information
         String usernameString = sharedPreferences.getString("username", "");
         username.setText(username.getText() + " " + usernameString);
+
+        String token = sharedPreferences.getString(getString(R.string.token), "");
     }
 
 }

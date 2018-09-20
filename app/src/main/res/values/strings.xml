@@ -4,6 +4,7 @@
     <!-- Main Strings -->
     <string name="username">username</string>
     <string name="password">password</string>
+    <string name="token">token</string>
     <string name="main_not_logged_in">Not logged in\n\nClick Profile button to sign in</string>
     <string name="main_logged_in">Logged in as: </string>
 
@@ -89,9 +90,15 @@
     <!-- Additional Data -->
     <string name="survey_additional_data_question">These values are optional and can be entered if the proper equipment is available.</string>
     <string name="survey_additional_data_snow_depth_label">Snow Depth:</string>
+    <string name="units_in">in.</string>
+    <string name="units_cm">cm.</string>
     <string name="survey_additional_data_weight_snow_label">Tube + Cap + Snow Weight:</string>
+    <string name="units_lbs">lbs.</string>
+    <string name="units_g">g.</string>
     <string name="survey_additional_data_weight_no_snow_label">Tube + Cap Weight:</string>
     <string name="survey_additional_data_snow_temperature_label">Snow Temperature:</string>
+    <string name="units_F">°F</string>
+    <string name="units_C">°C</string>
     <!-- Notes -->
     <string name="survey_notes_question">Observation notes (ie: debris on snow, ice surface, footprints, rain-on-snow)</string>
     <!-- End Time -->
