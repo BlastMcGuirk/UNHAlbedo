@@ -110,25 +110,39 @@
     <string name="survey_summary_title">Summary</string>
         <!-- Location -->
     <string name="survey_summary_header_location">Location</string>
-    <string name="survey_summary_station_ID">Station ID</string>
-    <string name="survey_summary_latitude">Latitude</string>
-    <string name="survey_summary_longitude">Longitude</string>
+    <string name="survey_summary_station_ID">Station ID: </string>
+    <string name="survey_summary_latitude">Latitude: </string>
+    <string name="survey_summary_longitude">Longitude: </string>
         <!-- Date and Time -->
     <string name="survey_summary_header_date_time">Date and Time</string>
-    <string name="survey_summary_date">Date</string>
-    <string name="survey_summary_start_time">Start Time</string>
-    <string name="survey_summary_end_time">End Time</string>
+    <string name="survey_summary_date">Date: </string>
+    <string name="survey_summary_start_time">Start Time: </string>
+    <string name="survey_summary_end_time">End Time: </string>
         <!-- Albedo -->
     <string name="survey_summary_header_albedo">Albedo</string>
-    <string name="survey_summary_incoming_1">Incoming 1</string>
-    <string name="survey_summary_incoming_2">Incoming 2</string>
-    <string name="survey_summary_incoming_3">Incoming 3</string>
-    <string name="survey_summary_outgoing_1">Outgoing 1</string>
-    <string name="survey_summary_outgoing_2">Outgoing 2</string>
-    <string name="survey_summary_outgoing_3">Outgoing 3</string>
-    <string name="survey_summary_albedo">Albedo</string>
+    <string name="survey_summary_incoming_all">Incoming Shortwaves: </string>
+    <string name="survey_summary_incoming_1">Incoming 1: </string>
+    <string name="survey_summary_incoming_2">Incoming 2: </string>
+    <string name="survey_summary_incoming_3">Incoming 3: </string>
+    <string name="survey_summary_outgoing_all">Outgoing Shortwaves: </string>
+    <string name="survey_summary_outgoing_1">Outgoing 1: </string>
+    <string name="survey_summary_outgoing_2">Outgoing 2: </string>
+    <string name="survey_summary_outgoing_3">Outgoing 3: </string>
+    <string name="survey_summary_albedo">Albedo: </string>
         <!-- Sky and Ground -->
     <string name="survey_summary_header_sky_ground">Sky and Ground</string>
-    <string name="survey_summary_sky">Sky</string>
+    <string name="survey_summary_sky">Sky: </string>
+    <string name="survey_summary_snow_state">Snow State: </string>
+    <string name="survey_summary_patchiness_percentage">Patchiness Percentage: </string>
+    <string name="survey_summary_ground_cover">Ground Cover: </string>
+    <string name="survey_summary_snow_surface_age">Snow Surface Age: </string>
+    <string name="survey_summary_snow_melt">Snow Melt: </string>
+        <!-- Additional Information -->
+    <string name="survey_summary_header_additional_information">Additional Information</string>
+    <string name="survey_summary_depth">Snow Depth: </string>
+    <string name="survey_summary_temp">Snow Temp: </string>
+    <string name="survey_summary_weight">Snow Weight: </string>
+        <!-- Notes -->
+    <string name="survey_summary_header_notes">Notes</string>
 
 </resources>

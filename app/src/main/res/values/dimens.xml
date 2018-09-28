@@ -34,7 +34,11 @@
     <dimen name="survey_ground_cover_button_margin">5dp</dimen>
     <dimen name="survey_ground_cover_button_text">18sp</dimen>
     <dimen name="survey_ground_cover_button_height">75dp</dimen>
-
+    <!-- Summary -->
+    <dimen name="survey_summary_title_size">20sp</dimen>
+    <dimen name="survey_summary_header_size">16sp</dimen>
+    <dimen name="survey_summary_data_size">14sp</dimen>
+    <dimen name="survey_summary_header_padding_top">5dp</dimen>
 
 
 

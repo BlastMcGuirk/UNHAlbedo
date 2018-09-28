@@ -13,7 +13,162 @@
         android:layout_marginTop="@dimen/survey_question_margin_top"
         android:text="@string/title_summary"
         android:textColor="@color/BLACK"
-        android:textSize="@dimen/survey_question_size" />
+        android:textSize="@dimen/survey_summary_title_size" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/survey_summary_header_padding_top"
+        android:text="@string/survey_summary_header_location"
+        android:textColor="@color/BLACK"
+        android:textSize="@dimen/survey_summary_header_size" />
+
+    <TextView
+        android:id="@+id/summary_stationID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_summary_station_ID" />
+
+    <TextView
+        android:id="@+id/summary_latitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_summary_latitude" />
+
+    <TextView
+        android:id="@+id/summary_longitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_summary_longitude" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/survey_summary_header_padding_top"
+        android:text="@string/survey_summary_header_date_time"
+        android:textColor="@color/BLACK"
+        android:textSize="@dimen/survey_summary_header_size" />
+
+    <TextView
+        android:id="@+id/summary_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_summary_date" />
+
+    <TextView
+        android:id="@+id/summary_start_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_summary_start_time" />
+
+    <TextView
+        android:id="@+id/summary_end_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_summary_end_time" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/survey_summary_header_padding_top"
+        android:text="@string/survey_summary_header_albedo"
+        android:textColor="@color/BLACK"
+        android:textSize="@dimen/survey_summary_header_size" />
+
+    <TextView
+        android:id="@+id/summary_incoming"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_summary_incoming_all" />
+
+    <TextView
+        android:id="@+id/summary_outgoing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_summary_outgoing_all" />
+
+    <TextView
+        android:id="@+id/summary_albedo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_summary_albedo" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/survey_summary_header_padding_top"
+        android:text="@string/survey_summary_header_sky_ground"
+        android:textColor="@color/BLACK"
+        android:textSize="@dimen/survey_summary_header_size" />
+
+    <TextView
+        android:id="@+id/summary_sky"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_summary_sky" />
+
+    <TextView
+        android:id="@+id/summary_snow_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_summary_snow_state" />
+
+    <TextView
+        android:id="@+id/summary_ground_cover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_summary_ground_cover" />
+
+    <TextView
+        android:id="@+id/summary_surface_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_summary_snow_surface_age" />
+
+    <TextView
+        android:id="@+id/summary_snow_melt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_summary_snow_melt" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/survey_summary_header_padding_top"
+        android:text="@string/survey_summary_header_additional_information"
+        android:textColor="@color/BLACK"
+        android:textSize="@dimen/survey_summary_header_size" />
+
+    <TextView
+        android:id="@+id/summary_depth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_summary_depth" />
+
+    <TextView
+        android:id="@+id/summary_temp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_summary_temp" />
+
+    <TextView
+        android:id="@+id/summary_weight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_summary_weight" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/survey_summary_header_padding_top"
+        android:text="@string/survey_summary_header_notes"
+        android:textColor="@color/BLACK"
+        android:textSize="@dimen/survey_summary_header_size" />
+
+    <TextView
+        android:id="@+id/summary_notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/survey_summary_submit"

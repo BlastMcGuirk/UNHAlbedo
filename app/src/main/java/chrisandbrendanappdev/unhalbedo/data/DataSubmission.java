@@ -119,8 +119,8 @@ public class DataSubmission implements Serializable {
             json.put("latitude", latitude);
             json.put("longitude", longitude);
 
-            json.put("observation_Date", dateFormat.format(startCalendar));
-            json.put("observation_Time", timeFormat.format(startCalendar));
+            json.put("observation_Date", dateFormat.format(startCalendar.getTime()));
+            json.put("observation_Time", timeFormat.format(startCalendar.getTime()));
             json.put("end_Albedo_Observation_time", timeFormat.format(endCalendar));
 
             json.put("cloud_Coverage", cloudCoverage.toString());
@@ -143,11 +143,9 @@ public class DataSubmission implements Serializable {
 
             json.put("observation_Notes", notes);
 
-            double albedo = ((outgoing1 / incoming1) + (outgoing2 / incoming2) + (outgoing3 / incoming3)) / 3.0;
-            json.put("albedo", albedo);
+            json.put("albedo", getAlbedo());
 
-            double snowDensity = 0;
-            json.put("snow_density", snowDensity);
+            //json.put("snow_density", snowDensity);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -166,6 +164,14 @@ public class DataSubmission implements Serializable {
 
     public Calendar getStartCalendar() {return startCalendar;}
     public void setStartCalendar(Calendar startCalendar) {this.startCalendar = startCalendar;}
+    public String getDate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy", Locale.US);
+        return dateFormat.format(startCalendar.getTime());
+    }
+    public String getStartTime() {
+        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm aa", Locale.US);
+        return timeFormat.format(startCalendar.getTime());
+    }
 
     public CloudCover getCloudCoverage() {return cloudCoverage;}
     public void setCloudCoverage(CloudCover cloudCoverage) {this.cloudCoverage = cloudCoverage;}
@@ -220,4 +226,12 @@ public class DataSubmission implements Serializable {
 
     public Calendar getEndCalendar() {return endCalendar;}
     public void setEndCalendar(Calendar endCalendar) {this.endCalendar = endCalendar;}
+    public String getEndTime() {
+        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm aa", Locale.US);
+        return timeFormat.format(endCalendar.getTime());
+    }
+
+    public double getAlbedo() {
+        return ((outgoing1 / incoming1) + (outgoing2 / incoming2) + (outgoing3 / incoming3)) / 3.0;
+    }
 }
