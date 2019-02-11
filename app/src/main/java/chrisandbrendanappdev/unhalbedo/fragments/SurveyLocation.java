@@ -106,7 +106,7 @@ public class SurveyLocation extends SurveyFragment {
 
     @Override
     void fillInEmptyValues() {
-        if (data.getLatitude() != 0 && data.getLongitude() != 0) {
+        if (data.getLatitude() != 0 || data.getLongitude() != 0) {
             latitude.setText(data.getLatitude() + "");
             longitude.setText(data.getLongitude() + "");
             dutyStations.setSelection(spinnerAdapter.getPosition(data.getStationID()));

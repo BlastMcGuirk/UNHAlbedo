@@ -74,8 +74,8 @@ public class ProfileLoggedOut extends Fragment {
             @SuppressLint("ApplySharedPref")
             @Override
             public void onClick(View v) {
-                String urlToken = "http://albedo.gsscdev.com/api/auth/get_token/";
                 String username = usernameText.getText().toString(); //"CoCoRAHS5";
+                String urlToken = "http://albedo.gsscdev.com/api/auth/get_token/";
                 String password = passwordText.getText().toString(); //"A1b3d02011!"; //passwordText.getText().toString() == "1" ?  : "A1b3d02011";
                 String token;
 

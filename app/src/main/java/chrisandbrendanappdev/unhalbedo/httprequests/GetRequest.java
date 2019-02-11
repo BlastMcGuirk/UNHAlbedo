@@ -1,11 +1,9 @@
 package chrisandbrendanappdev.unhalbedo.httprequests;
 
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -15,38 +13,34 @@ import java.net.URL;
 
 public class GetRequest {
 
-    private static String usersURL = "http://albedo.gsscdev.com/api/users/";
+    private static String usersURL = "http://albedo.gsscdev.com/api/users/?page=";
+    private static final String jsonQuery = "?format=json";
+    private static final String addJSONQuery = "&format=json";
 
     public static JSONObject Users(String token) {
-        return basicGet(token, usersURL);
+        return basicGet(token, usersURL + 1 + addJSONQuery);
     }
 
-    public static JSONObject Users(String token, String id) {
-        return basicGet(token, usersURL + id + "/");
+    public static JSONObject Users(String token, int page) {
+        return basicGet(token, usersURL + page + addJSONQuery);
     }
 
     private static JSONObject basicGet(String token, String urlString) {
         try {
-            URL url = new URL(urlString + "?format=json");
+            URL url = new URL(urlString);
             HttpURLConnection http = (HttpURLConnection) url.openConnection();
             http.setRequestMethod("GET");
-            http.setRequestProperty("Content-Type", "application/json");
+            http.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             http.setRequestProperty("Accept", "application/json");
-            //http.setRequestProperty("Authorization", "Token " + token);
+            http.setRequestProperty("Authorization", "Token " + token);
+            //http.setDoOutput(true);
             http.setDoInput(true);
-            http.setDoOutput(true);
-
-            OutputStream os = http.getOutputStream();
-            os.write(0);
-            os.close();
-
-            InputStream inStream = http.getInputStream();
-            System.out.println("Sending GET to " + urlString + " with token " + token);
-            System.out.println(http.getHeaderField("Content-Type"));
 
             int status = http.getResponseCode();
             System.out.println("Response: " + status);
             if (status == HttpURLConnection.HTTP_OK) {
+                InputStream inStream = http.getInputStream();
+                System.out.println("Success! content type: " + http.getHeaderField("Content-Type"));
                 BufferedReader in = new BufferedReader(new InputStreamReader(inStream));
                 StringBuilder sb = new StringBuilder();
                 String line;
@@ -56,7 +50,7 @@ public class GetRequest {
                 }
                 in.close();
 
-                System.out.println("---------- basicGet:\n" + sb.toString());
+                //System.out.println("---------- basicGet:\n" + sb.toString());
 
                 return new JSONObject(sb.toString());
             } else {

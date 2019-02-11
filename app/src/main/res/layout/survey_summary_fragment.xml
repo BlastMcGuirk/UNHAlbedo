@@ -27,19 +27,22 @@
         android:id="@+id/summary_stationID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/survey_summary_station_ID" />
+        android:text="@string/survey_summary_station_ID"
+        android:textSize="@dimen/survey_summary_data_size"/>
 
     <TextView
         android:id="@+id/summary_latitude"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/survey_summary_latitude" />
+        android:text="@string/survey_summary_latitude"
+        android:textSize="@dimen/survey_summary_data_size"/>
 
     <TextView
         android:id="@+id/summary_longitude"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/survey_summary_longitude" />
+        android:text="@string/survey_summary_longitude"
+        android:textSize="@dimen/survey_summary_data_size"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -53,19 +56,22 @@
         android:id="@+id/summary_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/survey_summary_date" />
+        android:text="@string/survey_summary_date"
+        android:textSize="@dimen/survey_summary_data_size"/>
 
     <TextView
         android:id="@+id/summary_start_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/survey_summary_start_time" />
+        android:text="@string/survey_summary_start_time"
+        android:textSize="@dimen/survey_summary_data_size"/>
 
     <TextView
         android:id="@+id/summary_end_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/survey_summary_end_time" />
+        android:text="@string/survey_summary_end_time"
+        android:textSize="@dimen/survey_summary_data_size"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -79,19 +85,22 @@
         android:id="@+id/summary_incoming"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/survey_summary_incoming_all" />
+        android:text="@string/survey_summary_incoming_all"
+        android:textSize="@dimen/survey_summary_data_size"/>
 
     <TextView
         android:id="@+id/summary_outgoing"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/survey_summary_outgoing_all" />
+        android:text="@string/survey_summary_outgoing_all"
+        android:textSize="@dimen/survey_summary_data_size"/>
 
     <TextView
         android:id="@+id/summary_albedo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/survey_summary_albedo" />
+        android:text="@string/survey_summary_albedo"
+        android:textSize="@dimen/survey_summary_data_size"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -105,31 +114,36 @@
         android:id="@+id/summary_sky"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/survey_summary_sky" />
+        android:text="@string/survey_summary_sky"
+        android:textSize="@dimen/survey_summary_data_size"/>
 
     <TextView
         android:id="@+id/summary_snow_state"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/survey_summary_snow_state" />
+        android:text="@string/survey_summary_snow_state"
+        android:textSize="@dimen/survey_summary_data_size"/>
 
     <TextView
         android:id="@+id/summary_ground_cover"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/survey_summary_ground_cover" />
+        android:text="@string/survey_summary_ground_cover"
+        android:textSize="@dimen/survey_summary_data_size"/>
 
     <TextView
         android:id="@+id/summary_surface_age"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/survey_summary_snow_surface_age" />
+        android:text="@string/survey_summary_snow_surface_age"
+        android:textSize="@dimen/survey_summary_data_size"/>
 
     <TextView
         android:id="@+id/summary_snow_melt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/survey_summary_snow_melt" />
+        android:text="@string/survey_summary_snow_melt"
+        android:textSize="@dimen/survey_summary_data_size"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -143,19 +157,22 @@
         android:id="@+id/summary_depth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/survey_summary_depth" />
+        android:text="@string/survey_summary_depth"
+        android:textSize="@dimen/survey_summary_data_size"/>
 
     <TextView
         android:id="@+id/summary_temp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/survey_summary_temp" />
+        android:text="@string/survey_summary_temp"
+        android:textSize="@dimen/survey_summary_data_size"/>
 
     <TextView
         android:id="@+id/summary_weight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/survey_summary_weight" />
+        android:text="@string/survey_summary_weight"
+        android:textSize="@dimen/survey_summary_data_size"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -168,7 +185,8 @@
     <TextView
         android:id="@+id/summary_notes"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/survey_summary_data_size"/>
 
     <Button
         android:id="@+id/survey_summary_submit"

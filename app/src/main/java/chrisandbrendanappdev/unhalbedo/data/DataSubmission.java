@@ -1,5 +1,8 @@
 package chrisandbrendanappdev.unhalbedo.data;
 
+import android.content.SharedPreferences;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,6 +14,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import chrisandbrendanappdev.unhalbedo.data.DataEnums.*;
+import chrisandbrendanappdev.unhalbedo.httprequests.GetRequest;
 
 import static android.R.id.list;
 
@@ -52,9 +56,12 @@ public class DataSubmission implements Serializable {
 
     // Additional Snow Depth and Density Data
     private double snowDepth;
+    private boolean metricDepth;
     private double snowWeightWithTube;
     private double snowTubeWeight;
+    private boolean metricWeight;
     private double temperature;
+    private boolean metricTemp;
 
     // Notes
     private String notes;
@@ -105,29 +112,24 @@ public class DataSubmission implements Serializable {
         return output;
     }
 
-    public JSONObject getJSON() {
+    public JSONObject getJSON(String username, String token) {
         JSONObject json = new JSONObject();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy", Locale.US);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm aa", Locale.US);
 
         try {
-            // id
-            // user - users id
-            // date - date of submission (now)
+            json.put("user", getUserId(username, token));
+            // verify user id is valid
+            if (json.getInt("user") == 0) {
+                return null;
+            }
 
             json.put("station_Number", stationID.toString());
-            json.put("latitude", latitude);
-            json.put("longitude", longitude);
-
             json.put("observation_Date", dateFormat.format(startCalendar.getTime()));
             json.put("observation_Time", timeFormat.format(startCalendar.getTime()));
-            json.put("end_Albedo_Observation_time", timeFormat.format(endCalendar));
+            json.put("end_Albedo_Observation_time", timeFormat.format(endCalendar.getTime()));
 
-            json.put("cloud_Coverage", cloudCoverage.toString());
-            json.put("snow_State", snowState.toString());
-            json.put("Patchiness_percentage", patchinessPercentage);
-            json.put("snow_surface_Age", snowSurfaceAge.toString());
-            json.put("snow_Melt", snowMelt);
+            json.put("cloud_Coverage", cloudCoverage.getSubName());
 
             json.put("incoming_Shortwave_1", incoming1);
             json.put("incoming_Shortwave_2", incoming2);
@@ -136,21 +138,75 @@ public class DataSubmission implements Serializable {
             json.put("outgoing_Shortwave_2", outgoing2);
             json.put("outgoing_Shortwave_3", outgoing3);
 
-            json.put("surface_Skin_Temperature", temperature);
-            json.put("snow_Depth", snowDepth);
-            json.put("tube_cap_weight", snowTubeWeight);
-            json.put("tube_cap_snow_weight", snowWeightWithTube);
+            if (temperature != -999) {
+                double tempVal = metricTemp ? temperature : (temperature * (9.0/5.0)) + 32;
+                json.put("surface_Skin_Temperature", tempVal);
+            }
+
+            json.put("tube_Number", 0);
+
+            if (snowDepth != -999) {
+                double depthVal = metricDepth ? snowDepth : snowDepth / 2.54;
+                json.put("snow_Depth", depthVal);
+            }
+
+            if (snowWeightWithTube != -999) {
+                double snowTubeCapWeight = metricWeight ? snowWeightWithTube : snowWeightWithTube / 453.592;
+                double tubeCapWeight = metricWeight ? snowTubeWeight : snowTubeWeight / 453.592;
+                json.put("snow_tube_cap_weight", snowTubeCapWeight);
+                json.put("tube_cap_weight", tubeCapWeight);
+            }
+
+            boolean snowing =   snowSurfaceAge.equals(SnowSurfaceAge.CURRENTLY_SNOWING) ||
+                                snowSurfaceAge.equals(SnowSurfaceAge.LESS_THAN_ONE_DAY);
+            json.put("snowfall_Last_24hours", snowing ? "Y" : "N");
+            json.put("snow_Melt", snowMelt ? "Y" : "N");
 
             json.put("observation_Notes", notes);
 
-            json.put("albedo", getAlbedo());
+            json.put("lat", latitude);
+            json.put("lon", longitude);
 
-            //json.put("snow_density", snowDensity);
+            json.put("snow_state", snowState.getSubName());
+            if (snowState.getSubName().equals("PS")) {
+                String patchStr = (snowState != SnowState.PATCHY_SNOW || patchinessPercentage == -999) ? "" : String.valueOf(patchinessPercentage);
+                json.put("patchiness", patchStr);
+            }
+
+            json.put("snow_surface_age", snowSurfaceAge.getSubName());
+
+            json.put("ground_cover", groundCover.getSubName());
+            json.put("ground_cover_other", "N/A"); // Change when implemented
+
         } catch (JSONException e) {
             e.printStackTrace();
+            return null;
         }
 
         return json;
+    }
+
+    private int getUserId(String username, String token) {
+        try {
+            JSONObject users;
+            int page = 1;
+            do {
+                users = GetRequest.Users(token, page);
+                JSONArray results = users.getJSONArray("results");
+                for (int i = 0; i < results.length(); i++) {
+                    JSONObject user = results.getJSONObject(i);
+                    if (user.getString("username").equals(username)) {
+                        return user.getInt("id");
+                    }
+                }
+                page++;
+            } while (!users.getString("next").equals("null"));
+        } catch (Exception e) {
+            System.out.println("Exception, cannot get username");
+            return 0;
+        }
+        System.out.println("Username not found");
+        return 0;
     }
 
     public StationID getStationID() {return stationID;}

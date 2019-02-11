@@ -26,11 +26,6 @@ public class SurveySnowSurfaceAge extends SurveyFragment {
 
     private Button butNext;
 
-    public SurveySnowSurfaceAge() {
-        // Required empty public constructor
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,7 +59,7 @@ public class SurveySnowSurfaceAge extends SurveyFragment {
     }
 
     private void setupSpinner() {
-        spinnerAdapter = new ArrayAdapter<DataEnums.SnowSurfaceAge>(
+        spinnerAdapter = new ArrayAdapter<>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
                 DataEnums.SnowSurfaceAge.values()

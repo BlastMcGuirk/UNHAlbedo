@@ -12,7 +12,7 @@ import chrisandbrendanappdev.unhalbedo.data.DataSubmission;
  *  Abstract class for each question in the survey
  */
 
-abstract class SurveyFragment extends Fragment {
+abstract class  SurveyFragment extends Fragment {
 
     DataProvider dataProvider;
     DataSubmission data;
@@ -20,13 +20,13 @@ abstract class SurveyFragment extends Fragment {
     public void init(View v, String title) {
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         getActivity().setTitle(title);
-        getData();
+        loadData();
         getViews(v);
         fillInEmptyValues();
         addOnClickListeners();
     }
 
-    private void getData() {
+    private void loadData() {
         dataProvider = (DataProvider) getActivity();
         data = dataProvider.getData();
     }

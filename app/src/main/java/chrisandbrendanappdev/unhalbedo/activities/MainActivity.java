@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import chrisandbrendanappdev.unhalbedo.R;
 
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         container.removeAllViews();
 
         // Attempt a login
-        if (attemptLogin(username)) {
+        if (isLoggedIn(username)) {
             // User has successfully logged in
             setViewTextToLoggedIn();
         } else {
@@ -116,13 +115,12 @@ public class MainActivity extends AppCompatActivity {
      *
      *  @return success of the login (true if logged in, false if failed)
      */
-    private boolean attemptLogin(String username) {
+    private boolean isLoggedIn(String username) {
         if (username.equals("")) {
             // No user last logged in
             return false;
         }
         // Previous username logged in
-        // TODO: Log in
         return true;
     }
 

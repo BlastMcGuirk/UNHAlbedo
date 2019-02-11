@@ -19,11 +19,6 @@ public class SurveyNotes extends SurveyFragment {
     private EditText notes;
     private Button butNext;
 
-    public SurveyNotes() {
-        // Required empty public constructor
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,5 +45,12 @@ public class SurveyNotes extends SurveyFragment {
                 saveDataAndContinue(new SurveyEndTime());
             }
         });
+    }
+
+    @Override
+    void fillInEmptyValues() {
+        if (data.getNotes() != "") {
+            notes.setText(data.getNotes());
+        }
     }
 }

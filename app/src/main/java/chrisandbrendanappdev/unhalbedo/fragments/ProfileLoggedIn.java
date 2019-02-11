@@ -13,7 +13,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 import chrisandbrendanappdev.unhalbedo.R;
+import chrisandbrendanappdev.unhalbedo.httprequests.GetRequest;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -88,6 +91,8 @@ public class ProfileLoggedIn extends Fragment {
         username.setText(username.getText() + " " + usernameString);
 
         String token = sharedPreferences.getString(getString(R.string.token), "");
+
+        JSONObject res = GetRequest.Users(token);
     }
 
 }

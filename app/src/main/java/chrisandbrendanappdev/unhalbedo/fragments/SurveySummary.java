@@ -1,6 +1,8 @@
 package chrisandbrendanappdev.unhalbedo.fragments;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,9 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONObject;
 
 import chrisandbrendanappdev.unhalbedo.R;
 import chrisandbrendanappdev.unhalbedo.data.DataEnums;
+import chrisandbrendanappdev.unhalbedo.httprequests.PostRequest;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -67,9 +73,9 @@ public class SurveySummary extends SurveyFragment {
 
     @Override
     void fillInEmptyValues() {
-        stationID.append(data.getStationID().toString());
-        latitude.append(String.valueOf(data.getLatitude()));
-        longitude.append(String.valueOf(data.getLongitude()));
+        stationID.append(" " + data.getStationID().toString());
+        latitude.append(" " + String.valueOf(data.getLatitude()));
+        longitude.append(" " + String.valueOf(data.getLongitude()));
 
         date.append(" " + data.getDate());
         startTime.append(" " + data.getStartTime());
@@ -82,7 +88,7 @@ public class SurveySummary extends SurveyFragment {
         sky.append(" " + data.getCloudCoverage().toString());
         snowState.append(" " + data.getSnowState().toString());
         if (data.getSnowState() == DataEnums.SnowState.PATCHY_SNOW) {
-            snowState.append(" Patchiness %: " + data.getPatchinessPercentage() + "%");
+            snowState.append("\nPatchiness %: " + data.getPatchinessPercentage() + "%");
         }
         groundCover.append(" " + data.getGroundCover().toString());
         surfaceAge.append(" " + data.getSnowSurfaceAge().toString());
@@ -94,7 +100,7 @@ public class SurveySummary extends SurveyFragment {
                         String.valueOf(data.getSnowWeightWithTube() - data.getSnowTubeWeight());
         weight.append(" " + weightstr);
 
-        notes.append(" " + data.getNotes());
+        notes.append(data.getNotes());
     }
 
     @Override
@@ -103,7 +109,16 @@ public class SurveySummary extends SurveyFragment {
             @Override
             public void onClick(View v) {
                 //TODO: Send data to server
-                getActivity().finish();
+                SharedPreferences sp = getActivity().getSharedPreferences(getString(R.string.username), Context.MODE_PRIVATE);
+                JSONObject sendData = data.getJSON(sp.getString(getString(R.string.username), ""), sp.getString(getString(R.string.token), ""));
+
+                boolean res = PostRequest.submitData(sendData, sp.getString(getString(R.string.token), ""));
+                if (!res) {
+                    Toast.makeText(getActivity(), "Could not submit data", Toast.LENGTH_LONG).show();
+                } else {
+                    getActivity().finish();
+                    Toast.makeText(getActivity(), "Submitted data", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

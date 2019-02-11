@@ -46,13 +46,17 @@ public class DataEnums {
     }
 
     public enum CloudCover {
-        ACLR("All Clear"), CLR("Clear"), PCL("Partly Cloudy"), OVC("Overcast");
+        ACLR("All Clear", "ACLR"), CLR("Clear", "CLR"), PCL("Partly Cloudy", "PCL"), OVC("Overcast", "OVC");
 
         private String stringName;
+        private String subName;
 
-        CloudCover(String name) {
+        CloudCover(String name, String sub) {
             stringName = name;
+            subName = sub;
         }
+
+        public String getSubName() { return subName; }
 
         @Override
         public String toString() {
@@ -61,33 +65,41 @@ public class DataEnums {
     }
 
     public enum SnowSurfaceAge {
-        CURRENTLY_SNOWING("Currently Snowing"), LESS_THAN_ONE_DAY("< 1 Day"),
-        ONE_DAY("1 Day"), TWO_DAYS("2 Days"), THREE_DAYS("3 Days"),
-        FOUR_DAYS("4 Days"), FIVE_DAYS("5 Days"), SIX_DAYS("6 Days"),
-        ONE_WEEK("1 Week"), TWO_WEEKS("2 Weeks"), THREE_WEEKS("3 Weeks"),
-        FOUR_PLUS_WEEKS("4+ Weeks");
+        CURRENTLY_SNOWING("Currently Snowing", "N/A"), LESS_THAN_ONE_DAY("< 1 Day", "<1d"),
+        ONE_DAY("1 Day", "1d"), TWO_DAYS("2 Days", "2d"), THREE_DAYS("3 Days", "3d"),
+        FOUR_DAYS("4 Days", "4d"), FIVE_DAYS("5 Days", "5d"), SIX_DAYS("6 Days", "6d"),
+        ONE_WEEK("1 Week", "1w"), TWO_WEEKS("2 Weeks", "2w"), THREE_WEEKS("3 Weeks", "3w"),
+        FOUR_PLUS_WEEKS("4+ Weeks", "4w");
 
         private String stringName;
+        private String subName;
 
-        SnowSurfaceAge(String name) {
+        SnowSurfaceAge(String name, String sub) {
             stringName = name;
+            subName = sub;
         }
+
+        public String getSubName() { return subName; }
 
         @Override
         public String toString() { return stringName; }
     }
 
     public enum GroundCover {
-        GRASS_LIVING("Grass (Living)"), GRASS_DEAD("Grass (Dead)"),
-        SOIL_WET("Wet Soil"), SOIL_DRY("Dry Soil"),
-        PAVEMENT("Pavement"), WOODEN_DECK("Wooden Deck"),
-        OTHER("Other");
+        GRASS_LIVING("Grass (Living)", "GL"), GRASS_DEAD("Grass (Dead)", "GD"),
+        SOIL_WET("Wet Soil", "WS"), SOIL_DRY("Dry Soil", "DS"),
+        PAVEMENT("Pavement", "P"), WOODEN_DECK("Wooden Deck", "WD"),
+        OTHER("Other", "Ot");
 
         private String typeName;
+        private String subName;
 
-        GroundCover(String type) {
+        GroundCover(String type, String sub) {
             typeName = type;
+            subName = sub;
         }
+
+        public String getSubName() { return subName; }
 
         @Override
         public String toString() { return typeName; }
@@ -98,14 +110,18 @@ public class DataEnums {
     }
 
     public enum SnowState {
-        SNOW_COVERED("Snow-covered"), PATCHY_SNOW("Patchy Snow"),
-        SNOW_FREE_DORMANT("Snow-free/Dormant"), SNOW_FREE_GREEN("Snow-free/Green");
+        SNOW_COVERED("Snow-covered", "SC"), PATCHY_SNOW("Patchy Snow", "PS"),
+        SNOW_FREE_DORMANT("Snow-free/Dormant", "SFD"), SNOW_FREE_GREEN("Snow-free/Green", "SFG");
 
         private String typeName;
+        private String subName;
 
-        SnowState(String type) {
+        SnowState(String type, String sub) {
             typeName = type;
+            subName = sub;
         }
+
+        public String getSubName() { return subName; }
 
         @Override
         public String toString() {
