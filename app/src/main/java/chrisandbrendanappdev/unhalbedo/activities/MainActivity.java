@@ -11,9 +11,23 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import chrisandbrendanappdev.unhalbedo.R;
+import chrisandbrendanappdev.unhalbedo.httprequests.GetRequest;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -132,11 +146,63 @@ public class MainActivity extends AppCompatActivity {
         // Add the logged in layout to the activity
         View v = layoutInflater.inflate(R.layout.main_page_logged_in_layout, container);
 
-        // TODO: Fill a ListView with data entries
-        // for now just fill in a Logged in as username
-        String message = getString(R.string.main_logged_in) + username;
-        TextView tv = (TextView) v.findViewById(R.id.main_page_logged_in_view);
-        tv.setText(message);
+        loadEntries(v);
+
+    }
+
+    private void loadEntries(View v) {
+        ListView entries = v.findViewById(R.id.Entries);
+
+        // Add items to HashMap
+        HashMap<String, String> entryMap = getEntries();
+
+        // Make list of HashMap
+        List<HashMap<String, String>> listItems = new ArrayList<>();
+
+        // Adapter to load items in to list
+        SimpleAdapter adapter = new SimpleAdapter(this, listItems, R.layout.list_entry_layout,
+                new String[]{"First Line", "Second Line"},
+                new int[]{R.id.list_entry_title, R.id.list_entry_info});
+
+        // Iterate through map
+        Iterator it = entryMap.entrySet().iterator();
+        while (it.hasNext()) {
+            HashMap<String, String> resultsMap = new HashMap<>();
+            Map.Entry pair = (Map.Entry) it.next();
+            resultsMap.put("First Line", pair.getKey().toString());
+            resultsMap.put("Second Line", pair.getValue().toString());
+            listItems.add(resultsMap);
+        }
+
+        entries.setAdapter(adapter);
+    }
+
+    private HashMap<String, String> getEntries() {
+        HashMap<String, String> entries = new HashMap<>();
+        String token = sharedPreferences.getString(getString(R.string.token), "");
+        String username = sharedPreferences.getString(getString(R.string.username), "");
+
+        int ID = GetRequest.UserID(token, username);
+        // TODO: Change back to ID once server changes are made
+        JSONObject results = GetRequest.Entries(token, 210);
+        System.out.println(results);
+
+        try {
+            JSONArray listOfEntries = results.getJSONArray("entries");
+            System.out.println(listOfEntries);
+            for (int i = 0; i < listOfEntries.length(); i++) {
+                JSONObject obj = listOfEntries.getJSONObject(i);
+                System.out.println(obj);
+                String title = obj.getString("station_Number");
+                String date = obj.getString("observation_Date");
+                String time = obj.getString("observation_Time");
+                entries.put(title, date + "   " + time);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return entries;
     }
 
     /*

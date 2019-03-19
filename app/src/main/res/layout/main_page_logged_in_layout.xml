@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- TODO: Change TextView to ListView when connected to server -->
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:id="@+id/main_page_logged_in_view"
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/Entries"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/activity_vertical_margin"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:layout_marginRight="@dimen/activity_horizontal_margin"
-    android:layout_marginTop="@dimen/activity_vertical_margin"
-    android:text="@string/main_logged_in"/>
+    android:layout_height="wrap_content"
+    android:divider="#CCC"
+    android:dividerHeight="2dp"
+    android:padding="6dp" />

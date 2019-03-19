@@ -1,5 +1,7 @@
 package chrisandbrendanappdev.unhalbedo.activities;
 
+import android.content.Context;
+import android.location.LocationManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import chrisandbrendanappdev.unhalbedo.fragments.SurveyLocation;
 public class SurveyActivity extends AppCompatActivity implements DataProvider {
 
     private DataSubmission data;
+    private LocationManager locMan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +21,8 @@ public class SurveyActivity extends AppCompatActivity implements DataProvider {
         setContentView(R.layout.activity_survey);
 
         data = new DataSubmission();
+
+        locMan = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         SurveyLocation surveyStart = new SurveyLocation();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -32,4 +37,6 @@ public class SurveyActivity extends AppCompatActivity implements DataProvider {
     public void setData(DataSubmission savedData) {
         this.data = savedData;
     }
+
+    public LocationManager getLocationManager() { return locMan; }
 }

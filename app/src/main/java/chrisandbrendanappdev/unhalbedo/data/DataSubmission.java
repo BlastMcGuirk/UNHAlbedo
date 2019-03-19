@@ -118,7 +118,7 @@ public class DataSubmission implements Serializable {
         SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm aa", Locale.US);
 
         try {
-            json.put("user", getUserId(username, token));
+            json.put("user", GetRequest.UserID(username, token));
             // verify user id is valid
             if (json.getInt("user") == 0) {
                 return null;
@@ -184,29 +184,6 @@ public class DataSubmission implements Serializable {
         }
 
         return json;
-    }
-
-    private int getUserId(String username, String token) {
-        try {
-            JSONObject users;
-            int page = 1;
-            do {
-                users = GetRequest.Users(token, page);
-                JSONArray results = users.getJSONArray("results");
-                for (int i = 0; i < results.length(); i++) {
-                    JSONObject user = results.getJSONObject(i);
-                    if (user.getString("username").equals(username)) {
-                        return user.getInt("id");
-                    }
-                }
-                page++;
-            } while (!users.getString("next").equals("null"));
-        } catch (Exception e) {
-            System.out.println("Exception, cannot get username");
-            return 0;
-        }
-        System.out.println("Username not found");
-        return 0;
     }
 
     public StationID getStationID() {return stationID;}

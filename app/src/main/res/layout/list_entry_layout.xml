@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/list_item_height"
+    android:padding="@dimen/list_item_padding"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/list_entry_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_item_text_title_height"
+        android:paddingStart="@dimen/list_item_text_padding"
+        android:textColor="@color/DARK_GRAY"
+        android:textSize="@dimen/list_item_title" />
+
+    <TextView
+        android:id="@+id/list_entry_info"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_item_text_info_height"
+        android:paddingStart="@dimen/list_item_text_padding"
+        android:textColor="@color/GRAY"
+        android:textSize="@dimen/list_item_info" />
+
+</LinearLayout>

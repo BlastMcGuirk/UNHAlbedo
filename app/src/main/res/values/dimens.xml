@@ -40,16 +40,12 @@
     <dimen name="survey_summary_data_size">18sp</dimen>
     <dimen name="survey_summary_header_padding_top">5dp</dimen>
 
-
-
-
-
-
+    <!-- List Items -->
     <dimen name="list_item_padding">6dp</dimen>
     <dimen name="list_item_text_title_height">38dip</dimen>
-    <dimen name="list_item_text_info_height">32dip</dimen>
+    <dimen name="list_item_text_info_height">24dip</dimen>
     <dimen name="list_item_title">28sp</dimen>
     <dimen name="list_item_info">20sp</dimen>
-    <dimen name="list_item_height">70dip</dimen>
+    <dimen name="list_item_height">80dip</dimen>
     <dimen name="list_item_text_padding">8dp</dimen>
 </resources>

@@ -1,5 +1,6 @@
 package chrisandbrendanappdev.unhalbedo.httprequests;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -13,7 +14,8 @@ import java.net.URL;
 
 public class GetRequest {
 
-    private static String usersURL = "http://albedo.gsscdev.com/api/users/?page=";
+    private static final String usersURL = "http://albedo.gsscdev.com/api/users/?page=";
+    private static final String entriesURL = "http://albedo.gsscdev.com/api/user/";
     private static final String jsonQuery = "?format=json";
     private static final String addJSONQuery = "&format=json";
 
@@ -23,6 +25,34 @@ public class GetRequest {
 
     public static JSONObject Users(String token, int page) {
         return basicGet(token, usersURL + page + addJSONQuery);
+    }
+
+    public static JSONObject Entries(String token, int ID) {
+        return basicGet(token, entriesURL + ID + "/posts/" + jsonQuery);
+    }
+
+    public static int UserID(String token, String username) {
+        try {
+            JSONObject users;
+            int page = 1;
+            do {
+                users = GetRequest.Users(token, page);
+                JSONArray results = users.getJSONArray("results");
+                for (int i = 0; i < results.length(); i++) {
+                    JSONObject user = results.getJSONObject(i);
+                    if (user.getString("username").equals(username)) {
+                        return user.getInt("id");
+                    }
+                }
+                page++;
+            } while (!users.getString("next").equals("null"));
+        } catch (Exception e) {
+            System.out.println("Exception, cannot get username");
+            e.printStackTrace();
+            return 0;
+        }
+        System.out.println("Username not found");
+        return 0;
     }
 
     private static JSONObject basicGet(String token, String urlString) {

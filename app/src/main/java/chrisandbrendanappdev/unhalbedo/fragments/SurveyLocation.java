@@ -1,8 +1,14 @@
 package chrisandbrendanappdev.unhalbedo.fragments;
 
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import chrisandbrendanappdev.unhalbedo.R;
+import chrisandbrendanappdev.unhalbedo.activities.SurveyActivity;
 import chrisandbrendanappdev.unhalbedo.data.DataEnums;
 
 /**
@@ -23,6 +30,8 @@ public class SurveyLocation extends SurveyFragment {
 
     private Spinner dutyStations;
     private ArrayAdapter<DataEnums.StationID> spinnerAdapter;
+
+    private LocationManager locMan;
 
     private EditText latitude, longitude;
     private double curLat, curLon;
@@ -37,7 +46,33 @@ public class SurveyLocation extends SurveyFragment {
         // Initialize the fragment according to the SurveyFragment abstract class
         init(v, getString(R.string.title_location));
 
+        locMan = ((SurveyActivity) getActivity()).getLocationManager();
+        requestPermission();
+
         return v;
+    }
+
+    private void requestPermission() {
+        if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(
+                        getActivity().getApplicationContext(),
+                        android.Manifest.permission.ACCESS_COARSE_LOCATION) !=
+                        PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]
+                            {android.Manifest.permission.ACCESS_FINE_LOCATION,
+                                    android.Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
+        }
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        Location loc = locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER);
     }
 
     @Override
@@ -73,8 +108,13 @@ public class SurveyLocation extends SurveyFragment {
         useCurrentLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Add location services to use the person's current location
                 Toast.makeText(getActivity(), "Feature not enabled yet", Toast.LENGTH_SHORT).show();
+                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                Location loc = locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                latitude.setText(loc.getLatitude() + "");
+                longitude.setText(loc.getLongitude() + "");
             }
         });
         latitude.setOnFocusChangeListener(new View.OnFocusChangeListener() {
