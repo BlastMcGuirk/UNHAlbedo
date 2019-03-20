@@ -1,7 +1,7 @@
 package chrisandbrendanappdev.unhalbedo.fragments;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +11,10 @@ import chrisandbrendanappdev.unhalbedo.R;
 import chrisandbrendanappdev.unhalbedo.data.DataEnums;
 
 /**
- * A simple {@link Fragment} subclass.
+ *  Sky Analysis is the cloudiness of the sky. The possible answers are All Clear, Clear (1-30%),
+ *  Partly Cloudy (30-70%), or Overcast (70-100%). The users select these from buttons with
+ *  images showing how cloudy the sky would look in each category. After the user selects one
+ *  of the values, they are automatically brought to the next question, Snow State.
  */
 public class SurveySkyAnalysis extends SurveyFragment {
 
@@ -23,7 +26,7 @@ public class SurveySkyAnalysis extends SurveyFragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.survey_sky_analysis_fragment, container, false);
@@ -35,10 +38,10 @@ public class SurveySkyAnalysis extends SurveyFragment {
 
     @Override
     void getViews(View v) {
-        butACLR = (Button) v.findViewById(R.id.survey_sky_analysis_ACLR);
-        butCLR = (Button) v.findViewById(R.id.survey_sky_analysis_CLR);
-        butPCL = (Button) v.findViewById(R.id.survey_sky_analysis_PCL);
-        butOVC = (Button) v.findViewById(R.id.survey_sky_analysis_OVC);
+        butACLR = v.findViewById(R.id.survey_sky_analysis_ACLR);
+        butCLR = v.findViewById(R.id.survey_sky_analysis_CLR);
+        butPCL = v.findViewById(R.id.survey_sky_analysis_PCL);
+        butOVC = v.findViewById(R.id.survey_sky_analysis_OVC);
     }
 
     @Override

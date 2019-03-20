@@ -3,7 +3,7 @@ package chrisandbrendanappdev.unhalbedo.activities;
 import chrisandbrendanappdev.unhalbedo.data.DataSubmission;
 
 /**
- * Created by Brendan on 8/4/2018.
+ *  A class that holds a DataSubmission for the survey
  */
 
 public interface DataProvider {

@@ -8,7 +8,11 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
+/**
+ *  Possible POST request calls to server
+ */
 public class PostRequest {
 
     private final static String SUBMIT_DATA_URL = "http://albedo.gsscdev.com/api/data-entries/";
@@ -25,10 +29,8 @@ public class PostRequest {
             http.setDoOutput(true);
             http.setDoInput(true);
 
-            System.out.println("token: " + token);
-
             OutputStream os = http.getOutputStream();
-            os.write(data.toString().getBytes("UTF-8"));
+            os.write(data.toString().getBytes(StandardCharsets.UTF_8));
             os.close();
 
             // get the status

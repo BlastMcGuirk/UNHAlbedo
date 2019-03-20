@@ -24,10 +24,25 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import chrisandbrendanappdev.unhalbedo.R;
 import chrisandbrendanappdev.unhalbedo.httprequests.GetRequest;
+
+/**
+ *      The main activity of the Albedo App. This will be the main hub for the app. From here,
+ *  the user is able to start a survey, view their past submissions, and view their profile
+ *  page.
+ *      If the user is logged in, their past submissions will appear as a scrolling list.
+ *  By clicking on a submission, the user is able to see all the data from that submission.
+ *  This allows reviewing past submissions without needing to use a computer. Later, the
+ *  options will also be available to edit submissions, or delete them.
+ *      If the user is not logged in, text will appear alerting the user to the profile page
+ *  to log in to their account.
+ *      The profile page will show your profile information, including name, station, town,
+ *  and state.
+ *      Lastly, the + button will begin a survey, taking the user through pages of questions
+ *  to fill out all the information needed.
+ */
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,7 +58,11 @@ public class MainActivity extends AppCompatActivity {
      *  entries by this user
      */
     private SharedPreferences sharedPreferences;
-    private String username;
+
+    /*
+     *  Store past submissions for review/editing/deletion
+     */
+    //private ArrayList<JSONObject> pastSubmissions;
 
     /*
      *  Starting method for the activity
@@ -65,13 +84,13 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         // Check if there is a user logged in
-        username = sharedPreferences.getString(getString(R.string.username), "");
+        String username = sharedPreferences.getString(getString(R.string.username), null);
 
         // Clear the container to replace with logged in/out layout
         container.removeAllViews();
 
         // Attempt a login
-        if (isLoggedIn(username)) {
+        if (username != null) {
             // User has successfully logged in
             setViewTextToLoggedIn();
         } else {
@@ -119,23 +138,9 @@ public class MainActivity extends AppCompatActivity {
     private void initializeVariables() {
         // For injecting login results
         layoutInflater = getLayoutInflater();
-        container = (ViewGroup) findViewById(R.id.main_activity_container);
+        container = findViewById(R.id.main_activity_container);
 
         sharedPreferences = getSharedPreferences(getString(R.string.username), MODE_PRIVATE);
-    }
-
-    /*
-     *  Attempts to login to the server
-     *
-     *  @return success of the login (true if logged in, false if failed)
-     */
-    private boolean isLoggedIn(String username) {
-        if (username.equals("")) {
-            // No user last logged in
-            return false;
-        }
-        // Previous username logged in
-        return true;
     }
 
     /*
@@ -150,8 +155,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*
+     *  Fetch and load past user submissions. Submissions are displayed
+     *  in a ListView, and are clickable to view submission values.
+     */
     private void loadEntries(View v) {
+        // TODO: Make entries clickable and display values of submission
         ListView entries = v.findViewById(R.id.Entries);
+        //pastSubmissions = new ArrayList<>();
 
         // Add items to HashMap
         HashMap<String, String> entryMap = getEntries();
@@ -165,34 +176,46 @@ public class MainActivity extends AppCompatActivity {
                 new int[]{R.id.list_entry_title, R.id.list_entry_info});
 
         // Iterate through map
-        Iterator it = entryMap.entrySet().iterator();
-        while (it.hasNext()) {
+        if (entryMap == null) {
+            return;
+        }
+        for (Object entry : entryMap.entrySet()) {
+            // Add map of first and second line to list of submissions
             HashMap<String, String> resultsMap = new HashMap<>();
-            Map.Entry pair = (Map.Entry) it.next();
+            Map.Entry pair = (Map.Entry) entry;
             resultsMap.put("First Line", pair.getKey().toString());
             resultsMap.put("Second Line", pair.getValue().toString());
             listItems.add(resultsMap);
         }
 
+        // Fill ListView
         entries.setAdapter(adapter);
     }
 
+    /*
+     *  Fetch entries from server using user id
+     */
     private HashMap<String, String> getEntries() {
         HashMap<String, String> entries = new HashMap<>();
+
+        // Get username and token of logged in user
         String token = sharedPreferences.getString(getString(R.string.token), "");
         String username = sharedPreferences.getString(getString(R.string.username), "");
 
+        // Get id of username
         int ID = GetRequest.UserID(token, username);
-        // TODO: Change back to ID once server changes are made
-        JSONObject results = GetRequest.Entries(token, 210);
-        System.out.println(results);
 
+        // Fetch entries of ID from server
+        JSONObject results = GetRequest.Entries(token, ID);
+
+        // Parse JSON values
         try {
             JSONArray listOfEntries = results.getJSONArray("entries");
-            System.out.println(listOfEntries);
+            // Store JSON of entries for later viewing
             for (int i = 0; i < listOfEntries.length(); i++) {
                 JSONObject obj = listOfEntries.getJSONObject(i);
-                System.out.println(obj);
+                //pastSubmissions.add(obj);
+                // Get name and date of submissions for listing
                 String title = obj.getString("station_Number");
                 String date = obj.getString("observation_Date");
                 String time = obj.getString("observation_Time");
@@ -215,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Set message for user to warn them they aren't logged in
         String message = getString(R.string.main_not_logged_in);
-        TextView tv = (TextView) v.findViewById(R.id.main_page_logged_out_view);
+        TextView tv = v.findViewById(R.id.main_page_logged_out_view);
         tv.setText(message);
     }
 

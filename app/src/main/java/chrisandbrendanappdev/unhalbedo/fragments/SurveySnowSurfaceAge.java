@@ -2,7 +2,7 @@ package chrisandbrendanappdev.unhalbedo.fragments;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +11,15 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Spinner;
 
+import java.util.Objects;
+
 import chrisandbrendanappdev.unhalbedo.R;
 import chrisandbrendanappdev.unhalbedo.data.DataEnums;
 
 /**
- * A simple {@link Fragment} subclass.
+ *  Snow Surface Age asks how fresh the snow is. The user can choose from a Spinner of multiple
+ *  options, ranging from <24 hours to 4+ weeks. After, the user is brought to the Ground Cover
+ *  question.
  */
 public class SurveySnowSurfaceAge extends SurveyFragment {
 
@@ -27,7 +31,7 @@ public class SurveySnowSurfaceAge extends SurveyFragment {
     private Button butNext;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.survey_snow_surface_age_fragment, container, false);
@@ -39,9 +43,9 @@ public class SurveySnowSurfaceAge extends SurveyFragment {
 
     @Override
     void getViews(View v) {
-        age = (Spinner) v.findViewById(R.id.survey_snow_surface_age_spinner);
-        snowMelt = (CheckBox) v.findViewById(R.id.survey_snow_surface_age_melt);
-        butNext = (Button) v.findViewById(R.id.survey_snow_surface_age_next);
+        age = v.findViewById(R.id.survey_snow_surface_age_spinner);
+        snowMelt = v.findViewById(R.id.survey_snow_surface_age_melt);
+        butNext = v.findViewById(R.id.survey_snow_surface_age_next);
 
         setupSpinner();
     }
@@ -60,7 +64,7 @@ public class SurveySnowSurfaceAge extends SurveyFragment {
 
     private void setupSpinner() {
         spinnerAdapter = new ArrayAdapter<>(
-                getActivity(),
+                Objects.requireNonNull(getActivity()),
                 android.R.layout.simple_list_item_1,
                 DataEnums.SnowSurfaceAge.values()
         );

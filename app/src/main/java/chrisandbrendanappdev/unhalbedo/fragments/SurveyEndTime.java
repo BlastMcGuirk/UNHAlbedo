@@ -3,6 +3,7 @@ package chrisandbrendanappdev.unhalbedo.fragments;
 
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,10 @@ import java.util.Locale;
 import chrisandbrendanappdev.unhalbedo.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ *  Ending time of the survey. Only asks the user for the time, because the observation wouldn't
+ *  take more than one day. Also, there's no point in recording albedo at night, because there's
+ *  no light to reflect. After the user finishes entering the end time, they are brought to a
+ *  summary of their survey.
  */
 public class SurveyEndTime extends SurveyFragment {
 
@@ -33,7 +37,7 @@ public class SurveyEndTime extends SurveyFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.survey_end_time_fragment, container, false);
@@ -48,9 +52,9 @@ public class SurveyEndTime extends SurveyFragment {
 
     @Override
     void getViews(View v) {
-        time = (TextView) v.findViewById(R.id.survey_end_time_time);
-        setTime = (Button) v.findViewById(R.id.survey_end_time_set_time);
-        next = (Button) v.findViewById(R.id.survey_end_time_next);
+        time = v.findViewById(R.id.survey_end_time_time);
+        setTime = v.findViewById(R.id.survey_end_time_set_time);
+        next = v.findViewById(R.id.survey_end_time_next);
     }
 
     @Override
@@ -58,7 +62,7 @@ public class SurveyEndTime extends SurveyFragment {
         setTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showTimePickerDialog(v);
+                showTimePickerDialog();
             }
         });
         next.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +98,7 @@ public class SurveyEndTime extends SurveyFragment {
         }
     };
 
-    public void showTimePickerDialog(View v) {
+    public void showTimePickerDialog() {
         new TimePickerDialog(getActivity(), t,
                 calendar.get(Calendar.HOUR_OF_DAY),
                 calendar.get(Calendar.MINUTE), true).show();

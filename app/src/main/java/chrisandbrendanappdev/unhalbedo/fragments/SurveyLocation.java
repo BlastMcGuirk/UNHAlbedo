@@ -6,8 +6,8 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,12 +19,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.Objects;
+
 import chrisandbrendanappdev.unhalbedo.R;
 import chrisandbrendanappdev.unhalbedo.activities.SurveyActivity;
 import chrisandbrendanappdev.unhalbedo.data.DataEnums;
 
 /**
- * A simple {@link Fragment} subclass.
+ *  Location question. This asks the user to enter their duty station, or enter their own
+ *  location. To enter their own location, they can either type in the latitude and longitude,
+ *  or they can press the Current Location button to have the device read the phone's current
+ *  location, and automatically enter the coordinates. Clicking on the next button will bring
+ *  the user to the Start Time question.
  */
 public class SurveyLocation extends SurveyFragment {
 
@@ -38,7 +44,7 @@ public class SurveyLocation extends SurveyFragment {
     private Button useCurrentLocation, next;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.survey_location_fragment, container, false);
@@ -46,14 +52,15 @@ public class SurveyLocation extends SurveyFragment {
         // Initialize the fragment according to the SurveyFragment abstract class
         init(v, getString(R.string.title_location));
 
-        locMan = ((SurveyActivity) getActivity()).getLocationManager();
+        locMan = ((SurveyActivity) Objects.requireNonNull(getActivity())).getLocationManager();
         requestPermission();
 
         return v;
     }
 
     private void requestPermission() {
-        if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(),
+        // Permissions - this is a big mess, but it makes the current location work...
+        if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getActivity()).getApplicationContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION) !=
                 PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(
@@ -72,18 +79,18 @@ public class SurveyLocation extends SurveyFragment {
                 PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        Location loc = locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER);
     }
 
     @Override
     void getViews(View v) {
-        dutyStations = (Spinner) v.findViewById(R.id.survey_location_duty_station);
+        dutyStations = v.findViewById(R.id.survey_location_duty_station);
 
-        latitude = (EditText) v.findViewById(R.id.survey_location_lat);
-        longitude = (EditText) v.findViewById(R.id.survey_location_lon);
+        latitude = v.findViewById(R.id.survey_location_lat);
+        longitude = v.findViewById(R.id.survey_location_lon);
 
-        useCurrentLocation = (Button) v.findViewById(R.id.survey_location_current_loc);
-        next = (Button) v.findViewById(R.id.survey_location_next);
+        useCurrentLocation = v.findViewById(R.id.survey_location_current_loc);
+        next = v.findViewById(R.id.survey_location_next);
 
         setupSpinner();
     }
@@ -95,8 +102,10 @@ public class SurveyLocation extends SurveyFragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 DataEnums.StationID station = spinnerAdapter.getItem(position);
                 if (position != 0) {
-                    latitude.setText(station.getLatitude() + "");
-                    longitude.setText(station.getLongitude() + "");
+                    String latText = Objects.requireNonNull(station).getLatitude() + "";
+                    String lonText = station.getLongitude() + "";
+                    latitude.setText(latText);
+                    longitude.setText(lonText);
                 }
             }
 
@@ -109,12 +118,15 @@ public class SurveyLocation extends SurveyFragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "Feature not enabled yet", Toast.LENGTH_SHORT).show();
-                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // Check for permissions... yikes again
+                if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getContext()), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
                 Location loc = locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                latitude.setText(loc.getLatitude() + "");
-                longitude.setText(loc.getLongitude() + "");
+                String latText = loc.getLatitude() + "";
+                String lonText = loc.getLongitude() + "";
+                latitude.setText(latText);
+                longitude.setText(lonText);
             }
         });
         latitude.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -147,27 +159,30 @@ public class SurveyLocation extends SurveyFragment {
     @Override
     void fillInEmptyValues() {
         if (data.getLatitude() != 0 || data.getLongitude() != 0) {
-            latitude.setText(data.getLatitude() + "");
-            longitude.setText(data.getLongitude() + "");
+            String latText = data.getLatitude() + "";
+            String lonText = data.getLongitude() + "";
+            latitude.setText(latText);
+            longitude.setText(lonText);
             dutyStations.setSelection(spinnerAdapter.getPosition(data.getStationID()));
         }
     }
 
     private void setupSpinner() {
         spinnerAdapter = new ArrayAdapter<>(
-                getActivity(),
+                Objects.requireNonNull(getActivity()),
                 android.R.layout.simple_list_item_1,
                 DataEnums.StationID.values()
         );
         dutyStations.setAdapter(spinnerAdapter);
 
-        // TODO: Check profile for default duty station
-        // Temporarily set default to NH-ST-99
+        // Set default to NH-ST-99
         DataEnums.StationID defaultStation = DataEnums.StationID.NHST99;
         dutyStations.setSelection(spinnerAdapter.getPosition(defaultStation));
         curLat = defaultStation.getLatitude();
         curLon = defaultStation.getLongitude();
-        latitude.setText(curLat + "");
-        longitude.setText(curLon + "");
+        String latText = curLat + "";
+        String lonText = curLon + "";
+        latitude.setText(latText);
+        longitude.setText(lonText);
     }
 }

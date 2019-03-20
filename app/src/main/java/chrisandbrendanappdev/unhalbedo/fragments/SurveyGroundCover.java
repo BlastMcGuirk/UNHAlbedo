@@ -1,8 +1,7 @@
 package chrisandbrendanappdev.unhalbedo.fragments;
 
-
-
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,8 @@ import chrisandbrendanappdev.unhalbedo.R;
 import chrisandbrendanappdev.unhalbedo.data.DataEnums;
 
 /**
- * A simple {@link Fragment} subclass.
+ *  Ground cover question. Multiple buttons with images. Once the user clicks on the button
+ *  that matches their ground cover, the survey will continue with IncomingShortwaves.
  */
 public class SurveyGroundCover extends SurveyFragment {
 
@@ -24,7 +24,7 @@ public class SurveyGroundCover extends SurveyFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.survey_ground_cover_fragment, container, false);
@@ -36,13 +36,13 @@ public class SurveyGroundCover extends SurveyFragment {
 
     @Override
     void getViews(View v) {
-        grassLiving = (Button) v.findViewById(R.id.survey_ground_cover_grass_living);
-        grassDead = (Button) v.findViewById(R.id.survey_ground_cover_grass_dead);
-        wetSoil = (Button) v.findViewById(R.id.survey_ground_cover_wet_soil);
-        drySoil = (Button) v.findViewById(R.id.survey_ground_cover_dry_soil);
-        pavement = (Button) v.findViewById(R.id.survey_ground_cover_pavement);
-        wood = (Button) v.findViewById(R.id.survey_ground_cover_wooden_deck);
-        other = (Button) v.findViewById(R.id.survey_ground_cover_other);
+        grassLiving = v.findViewById(R.id.survey_ground_cover_grass_living);
+        grassDead = v.findViewById(R.id.survey_ground_cover_grass_dead);
+        wetSoil = v.findViewById(R.id.survey_ground_cover_wet_soil);
+        drySoil = v.findViewById(R.id.survey_ground_cover_dry_soil);
+        pavement = v.findViewById(R.id.survey_ground_cover_pavement);
+        wood = v.findViewById(R.id.survey_ground_cover_wooden_deck);
+        other = v.findViewById(R.id.survey_ground_cover_other);
     }
 
     @Override

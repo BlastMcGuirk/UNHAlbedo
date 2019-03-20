@@ -4,7 +4,7 @@ package chrisandbrendanappdev.unhalbedo.fragments;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +12,18 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Objects;
 
 import chrisandbrendanappdev.unhalbedo.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ *  Start time question. Here, the user will select the start time, as well as the start date
+ *  individually. After the user enters these values, they are brought to the Sky Analysis
+ *  question.
  */
 public class SurveyStartTime extends SurveyFragment {
 
@@ -37,7 +39,7 @@ public class SurveyStartTime extends SurveyFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.survey_start_time_fragment, container, false);
@@ -53,12 +55,12 @@ public class SurveyStartTime extends SurveyFragment {
 
     @Override
     void getViews(View v) {
-        day = (TextView) v.findViewById(R.id.survey_start_time_day);
-        time = (TextView) v.findViewById(R.id.survey_start_time_time);
+        day = v.findViewById(R.id.survey_start_time_day);
+        time = v.findViewById(R.id.survey_start_time_time);
 
-        setDay = (Button) v.findViewById(R.id.survey_start_time_set_day);
-        setTime = (Button) v.findViewById(R.id.survey_start_time_set_time);
-        next = (Button) v.findViewById(R.id.survey_start_time_next);
+        setDay = v.findViewById(R.id.survey_start_time_set_day);
+        setTime = v.findViewById(R.id.survey_start_time_set_time);
+        next = v.findViewById(R.id.survey_start_time_next);
     }
 
     @Override
@@ -66,13 +68,13 @@ public class SurveyStartTime extends SurveyFragment {
         setDay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDayPickerDialog(v);
+                showDayPickerDialog();
             }
         });
         setTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showTimePickerDialog(v);
+                showTimePickerDialog();
             }
         });
         next.setOnClickListener(new View.OnClickListener() {
@@ -133,14 +135,14 @@ public class SurveyStartTime extends SurveyFragment {
         }
     };
 
-    public void showTimePickerDialog(View v) {
+    public void showTimePickerDialog() {
         new TimePickerDialog(getActivity(), t,
                 calendar.get(Calendar.HOUR_OF_DAY),
                 calendar.get(Calendar.MINUTE), true).show();
     }
 
-    public void showDayPickerDialog(View v) {
-        DatePickerDialog dpd = new DatePickerDialog(getActivity(), d,
+    public void showDayPickerDialog() {
+        DatePickerDialog dpd = new DatePickerDialog(Objects.requireNonNull(getActivity()), d,
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH));

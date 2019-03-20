@@ -1,11 +1,14 @@
 package chrisandbrendanappdev.unhalbedo.data;
 
+import android.support.annotation.NonNull;
+
 /**
  * A Java class that holds the different enumerated types required for storing data
  */
 
 public class DataEnums {
 
+    // Station ID of submission, containing lat/lon coordinates of station
     public enum StationID {
         NONE("None", 0, 0),
         NHCH19("NH-CH-19", 42.93995, -72.313214),
@@ -39,12 +42,14 @@ public class DataEnums {
             return longitude;
         }
 
+        @NonNull
         @Override
         public String toString() {
             return stationName;
         }
     }
 
+    // Cloud cover text and acronym
     public enum CloudCover {
         ACLR("All Clear", "ACLR"), CLR("Clear", "CLR"), PCL("Partly Cloudy", "PCL"), OVC("Overcast", "OVC");
 
@@ -58,12 +63,14 @@ public class DataEnums {
 
         public String getSubName() { return subName; }
 
+        @NonNull
         @Override
         public String toString() {
             return stringName;
         }
     }
 
+    // Snow Surface Age display text and submission text
     public enum SnowSurfaceAge {
         CURRENTLY_SNOWING("Currently Snowing", "N/A"), LESS_THAN_ONE_DAY("< 1 Day", "<1d"),
         ONE_DAY("1 Day", "1d"), TWO_DAYS("2 Days", "2d"), THREE_DAYS("3 Days", "3d"),
@@ -81,10 +88,12 @@ public class DataEnums {
 
         public String getSubName() { return subName; }
 
+        @NonNull
         @Override
         public String toString() { return stringName; }
     }
 
+    // Ground Cover display text and submission text
     public enum GroundCover {
         GRASS_LIVING("Grass (Living)", "GL"), GRASS_DEAD("Grass (Dead)", "GD"),
         SOIL_WET("Wet Soil", "WS"), SOIL_DRY("Dry Soil", "DS"),
@@ -101,6 +110,7 @@ public class DataEnums {
 
         public String getSubName() { return subName; }
 
+        @NonNull
         @Override
         public String toString() { return typeName; }
 
@@ -109,6 +119,7 @@ public class DataEnums {
         }
     }
 
+    // Snow State display text and submission text
     public enum SnowState {
         SNOW_COVERED("Snow-covered", "SC"), PATCHY_SNOW("Patchy Snow", "PS"),
         SNOW_FREE_DORMANT("Snow-free/Dormant", "SFD"), SNOW_FREE_GREEN("Snow-free/Green", "SFG");
@@ -123,6 +134,7 @@ public class DataEnums {
 
         public String getSubName() { return subName; }
 
+        @NonNull
         @Override
         public String toString() {
             return typeName;

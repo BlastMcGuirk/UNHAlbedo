@@ -1,22 +1,17 @@
 package chrisandbrendanappdev.unhalbedo.data;
 
-import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 import chrisandbrendanappdev.unhalbedo.data.DataEnums.*;
 import chrisandbrendanappdev.unhalbedo.httprequests.GetRequest;
-
-import static android.R.id.list;
 
 /**
  * Stores all the information that is submitted in a submission
@@ -69,6 +64,7 @@ public class DataSubmission implements Serializable {
     // End Time
     private Calendar endCalendar;
 
+    // initialize values
     public DataSubmission() {
         stationID = null;
         latitude = longitude = 0;
@@ -89,6 +85,8 @@ public class DataSubmission implements Serializable {
         endCalendar = null;
     }
 
+    // toString overridden for debugging
+    @NonNull
     @Override
     public String toString() {
         String output = "";
@@ -112,6 +110,7 @@ public class DataSubmission implements Serializable {
         return output;
     }
 
+    // Convert the data submission to a JSON format for submitting
     public JSONObject getJSON(String username, String token) {
         JSONObject json = new JSONObject();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
@@ -138,6 +137,7 @@ public class DataSubmission implements Serializable {
             json.put("outgoing_Shortwave_2", outgoing2);
             json.put("outgoing_Shortwave_3", outgoing3);
 
+            // Convert temperature to celsius
             if (temperature != -999) {
                 double tempVal = metricTemp ? temperature : (temperature * (9.0/5.0)) + 32;
                 json.put("surface_Skin_Temperature", tempVal);
@@ -145,11 +145,13 @@ public class DataSubmission implements Serializable {
 
             json.put("tube_Number", 0);
 
+            // Convert snowDepth to centimeters
             if (snowDepth != -999) {
                 double depthVal = metricDepth ? snowDepth : snowDepth / 2.54;
                 json.put("snow_Depth", depthVal);
             }
 
+            // Convert weight to grams
             if (snowWeightWithTube != -999) {
                 double snowTubeCapWeight = metricWeight ? snowWeightWithTube : snowWeightWithTube / 453.592;
                 double tubeCapWeight = metricWeight ? snowTubeWeight : snowTubeWeight / 453.592;
@@ -244,15 +246,18 @@ public class DataSubmission implements Serializable {
 
     public double getSnowDepth() {return snowDepth;}
     public void setSnowDepth(double snowDepth) {this.snowDepth = snowDepth;}
+    public void setMetricDepth(boolean metric) {this.metricDepth = metric;}
 
     public double getSnowWeightWithTube() {return snowWeightWithTube;}
     public void setSnowWeightWithTube(double snowWeightWithTube) {this.snowWeightWithTube = snowWeightWithTube;}
 
     public double getSnowTubeWeight() {return snowTubeWeight;}
     public void setSnowTubeWeight(double snowTubeWeight) {this.snowTubeWeight = snowTubeWeight;}
+    public void setMetricWeight(boolean metric) {this.metricWeight = metric;}
 
     public void setTemperature(double temperature) {this.temperature = temperature;}
     public double getTemperature() {return temperature;}
+    public void setMetricTemp(boolean metric) {this.metricTemp = metric;}
 
     public String getNotes() {return notes;}
     public void setNotes(String notes) {this.notes = notes;}
@@ -264,6 +269,7 @@ public class DataSubmission implements Serializable {
         return timeFormat.format(endCalendar.getTime());
     }
 
+    // Calculate albedo
     public double getAlbedo() {
         return ((outgoing1 / incoming1) + (outgoing2 / incoming2) + (outgoing3 / incoming3)) / 3.0;
     }

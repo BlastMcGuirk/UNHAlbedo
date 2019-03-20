@@ -2,7 +2,7 @@ package chrisandbrendanappdev.unhalbedo.fragments;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +14,10 @@ import chrisandbrendanappdev.unhalbedo.R;
 import chrisandbrendanappdev.unhalbedo.data.DataEnums;
 
 /**
- * A simple {@link Fragment} subclass.
+ *  Patchiness percentage. This question asks the user the describe the patchiness of the snow
+ *  on the ground by using a slider in intervals of 10. The user is able to select 0% and 100%,
+ *  but their answer to the previous question about Snow State will be changed accordingly.
+ *
  */
 public class SurveyPatchinessPercentage extends SurveyFragment {
 
@@ -26,9 +29,8 @@ public class SurveyPatchinessPercentage extends SurveyFragment {
         // Required empty public constructor
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.survey_patchiness_percentage_fragment, container, false);
@@ -40,9 +42,9 @@ public class SurveyPatchinessPercentage extends SurveyFragment {
 
     @Override
     void getViews(View v) {
-        slider = (SeekBar) v.findViewById(R.id.survey_patchiness_percentage_slider);
-        valueDisplay = (TextView) v.findViewById(R.id.survey_patchiness_percentage_value);
-        butNext = (Button) v.findViewById(R.id.survey_patchiness_percentage_next);
+        slider = v.findViewById(R.id.survey_patchiness_percentage_slider);
+        valueDisplay = v.findViewById(R.id.survey_patchiness_percentage_value);
+        butNext = v.findViewById(R.id.survey_patchiness_percentage_next);
     }
 
     @Override
@@ -53,7 +55,8 @@ public class SurveyPatchinessPercentage extends SurveyFragment {
                 int dispProg = progress + 5;
                 dispProg /= 10;
                 dispProg *= 10;
-                valueDisplay.setText(dispProg + "% Covered");
+                String progText = dispProg + "% Covered";
+                valueDisplay.setText(progText);
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -89,6 +92,7 @@ public class SurveyPatchinessPercentage extends SurveyFragment {
         if (data.getPatchinessPercentage() != -999) {
             slider.setProgress(data.getPatchinessPercentage());
         }
-        valueDisplay.setText(slider.getProgress() + "% Covered");
+        String coverText = slider.getProgress() + "% Covered";
+        valueDisplay.setText(coverText);
     }
 }

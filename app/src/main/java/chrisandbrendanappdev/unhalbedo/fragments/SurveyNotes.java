@@ -2,7 +2,7 @@ package chrisandbrendanappdev.unhalbedo.fragments;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +12,8 @@ import android.widget.EditText;
 import chrisandbrendanappdev.unhalbedo.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ *  Notes entry. Here the user can type their own notes from the observation. This is optional,
+ *  but once the user hits next, they are brought to the End Time question.
  */
 public class SurveyNotes extends SurveyFragment {
 
@@ -20,7 +21,7 @@ public class SurveyNotes extends SurveyFragment {
     private Button butNext;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.survey_notes_fragment, container, false);
@@ -32,8 +33,8 @@ public class SurveyNotes extends SurveyFragment {
 
     @Override
     void getViews(View v) {
-        notes = (EditText) v.findViewById(R.id.survey_notes_notes);
-        butNext = (Button) v.findViewById(R.id.survey_notes_next);
+        notes = v.findViewById(R.id.survey_notes_notes);
+        butNext = v.findViewById(R.id.survey_notes_next);
     }
 
     @Override
@@ -49,7 +50,7 @@ public class SurveyNotes extends SurveyFragment {
 
     @Override
     void fillInEmptyValues() {
-        if (data.getNotes() != "") {
+        if (!data.getNotes().equals("")) {
             notes.setText(data.getNotes());
         }
     }

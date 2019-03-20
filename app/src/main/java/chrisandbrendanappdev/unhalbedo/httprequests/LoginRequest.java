@@ -7,7 +7,12 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
+/**
+ *  Post request to login to the server. This doesn't actually "log in", but rather gets
+ *  a token from the server granting the user access to server requests.
+ */
 public class LoginRequest {
 
     public static String getAuthToken(String url, String username, String password) {
@@ -25,7 +30,7 @@ public class LoginRequest {
             loginInfo.put("password", password);
 
             OutputStream os = http.getOutputStream();
-            os.write(loginInfo.toString().getBytes("UTF-8"));
+            os.write(loginInfo.toString().getBytes(StandardCharsets.UTF_8));
             os.close();
 
             // get the status
@@ -35,7 +40,7 @@ public class LoginRequest {
                 System.out.println("INFO: " + http.getResponseMessage());
                 return "";
             } else {
-                BufferedReader br = new BufferedReader(new InputStreamReader(http.getInputStream(), "utf-8"));
+                BufferedReader br = new BufferedReader(new InputStreamReader(http.getInputStream(), StandardCharsets.UTF_8));
                 StringBuilder sb = new StringBuilder();
                 String line;
                 while ((line = br.readLine()) != null) sb.append(line);

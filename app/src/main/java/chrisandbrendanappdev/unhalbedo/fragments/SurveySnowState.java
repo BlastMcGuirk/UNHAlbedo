@@ -1,8 +1,7 @@
 package chrisandbrendanappdev.unhalbedo.fragments;
 
-
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,14 @@ import chrisandbrendanappdev.unhalbedo.R;
 import chrisandbrendanappdev.unhalbedo.data.DataEnums;
 
 /**
- * A simple {@link Fragment} subclass.
+ *  Snow State is the amount of snow on the ground. This can range from Snow covered, patchy,
+ *  or snow free. The users select these from buttons with images showing what the ground would
+ *  look like with the snow on it. After the user selects one of the values, they are
+ *  automatically brought to one of three possible survey questions. If the user says the ground
+ *  is fully covered in snow, they will be brought to the Snow Surface Age question, and the
+ *  patchiness will be set to 100%. If the user says the ground is patchy, they will be brought
+ *  to the Patchiness Percentage question to choose the percentage there. If the user says the
+ *  ground is snow free, they are brought to the Ground Cover question.
  */
 public class SurveySnowState extends SurveyFragment {
 
@@ -24,7 +30,7 @@ public class SurveySnowState extends SurveyFragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.survey_snow_state_fragment, container, false);
@@ -36,10 +42,10 @@ public class SurveySnowState extends SurveyFragment {
 
     @Override
     void getViews(View v) {
-        snow = (Button) v.findViewById(R.id.survey_snow_state_snow_covered);
-        patchy = (Button) v.findViewById(R.id.survey_snow_state_patchy_snow);
-        dormant = (Button) v.findViewById(R.id.survey_snow_state_snow_free_dormant);
-        green = (Button) v.findViewById(R.id.survey_snow_state_snow_free_green);
+        snow = v.findViewById(R.id.survey_snow_state_snow_covered);
+        patchy = v.findViewById(R.id.survey_snow_state_patchy_snow);
+        dormant = v.findViewById(R.id.survey_snow_state_snow_free_dormant);
+        green = v.findViewById(R.id.survey_snow_state_snow_free_green);
     }
 
     @Override
@@ -47,6 +53,7 @@ public class SurveySnowState extends SurveyFragment {
         snow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Set patchiness to 100% and go to Snow Surface Age question
                 data.setPatchinessPercentage(100);
                 continueSurvey(DataEnums.SnowState.SNOW_COVERED, new SurveySnowSurfaceAge());
             }
@@ -54,12 +61,14 @@ public class SurveySnowState extends SurveyFragment {
         patchy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Go to Patchiness Percentage question
                 continueSurvey(DataEnums.SnowState.PATCHY_SNOW, new SurveyPatchinessPercentage());
             }
         });
         dormant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Set patchiness to 0% and go to Ground Cover question
                 data.setPatchinessPercentage(0);
                 continueSurvey(DataEnums.SnowState.SNOW_FREE_DORMANT, new SurveyGroundCover());
             }
@@ -67,6 +76,7 @@ public class SurveySnowState extends SurveyFragment {
         green.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Set patchiness to 0% and go to Ground Cover question
                 data.setPatchinessPercentage(0);
                 continueSurvey(DataEnums.SnowState.SNOW_FREE_GREEN, new SurveyGroundCover());
             }

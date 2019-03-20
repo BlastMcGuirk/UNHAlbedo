@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,36 +14,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.Objects;
 
 import chrisandbrendanappdev.unhalbedo.R;
 import chrisandbrendanappdev.unhalbedo.httprequests.LoginRequest;
 
 /**
- *
+ *  Fragment displayed when logged out. Shows a username and password EditText for the user
+ *  to log in to their account. If the user doesn't remember their password, they can press
+ *  the "forgotPassword" TextView to reset their password.
  */
 public class ProfileLoggedOut extends Fragment {
 
+    // Login texts
     private EditText usernameText, passwordText;
     private Button logIn;
+    // Resets the user's password
     private TextView forgotPassword;
 
     public ProfileLoggedOut() {
@@ -51,7 +38,7 @@ public class ProfileLoggedOut extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.profile_logged_out_layout, container, false);
@@ -63,10 +50,10 @@ public class ProfileLoggedOut extends Fragment {
     }
 
     private void findViews(View v) {
-        usernameText = (EditText) v.findViewById(R.id.profile_out_username);
-        passwordText = (EditText) v.findViewById(R.id.profile_out_password);
-        logIn = (Button) v.findViewById(R.id.profile_out_login);
-        forgotPassword = (TextView) v.findViewById(R.id.profile_out_forgot_password);
+        usernameText = v.findViewById(R.id.profile_out_username);
+        passwordText = v.findViewById(R.id.profile_out_password);
+        logIn = v.findViewById(R.id.profile_out_login);
+        forgotPassword = v.findViewById(R.id.profile_out_forgot_password);
     }
 
     private void addOnClickListeners() {
@@ -89,7 +76,8 @@ public class ProfileLoggedOut extends Fragment {
                 token = LoginRequest.getAuthToken(urlToken, username, password);
 
                 if (!token.equals("")) {
-                    SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string.username), Context.MODE_PRIVATE);
+                    SharedPreferences sharedPreferences =
+                            Objects.requireNonNull(getActivity()).getSharedPreferences(getString(R.string.username), Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString(getString(R.string.username), username);
                     editor.putString(getString(R.string.password), password);

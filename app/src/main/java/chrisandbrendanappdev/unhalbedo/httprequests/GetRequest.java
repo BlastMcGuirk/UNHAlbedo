@@ -9,7 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Possible get request calls to server
+ *  Possible GET request calls to server
  */
 
 public class GetRequest {
@@ -23,7 +23,7 @@ public class GetRequest {
         return basicGet(token, usersURL + 1 + addJSONQuery);
     }
 
-    public static JSONObject Users(String token, int page) {
+    private static JSONObject Users(String token, int page) {
         return basicGet(token, usersURL + page + addJSONQuery);
     }
 
@@ -55,6 +55,7 @@ public class GetRequest {
         return 0;
     }
 
+    // Performs a basic get request to the server using a specified URL
     private static JSONObject basicGet(String token, String urlString) {
         try {
             URL url = new URL(urlString);
@@ -63,11 +64,9 @@ public class GetRequest {
             http.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             http.setRequestProperty("Accept", "application/json");
             http.setRequestProperty("Authorization", "Token " + token);
-            //http.setDoOutput(true);
             http.setDoInput(true);
 
             int status = http.getResponseCode();
-            System.out.println("Response: " + status);
             if (status == HttpURLConnection.HTTP_OK) {
                 InputStream inStream = http.getInputStream();
                 System.out.println("Success! content type: " + http.getHeaderField("Content-Type"));
@@ -75,12 +74,9 @@ public class GetRequest {
                 StringBuilder sb = new StringBuilder();
                 String line;
                 while ((line = in.readLine()) != null) {
-                    System.out.println(line);
                     sb.append(line);
                 }
                 in.close();
-
-                //System.out.println("---------- basicGet:\n" + sb.toString());
 
                 return new JSONObject(sb.toString());
             } else {

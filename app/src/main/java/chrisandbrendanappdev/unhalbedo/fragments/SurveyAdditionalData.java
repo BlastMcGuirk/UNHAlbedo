@@ -1,8 +1,7 @@
 package chrisandbrendanappdev.unhalbedo.fragments;
 
-
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,20 +10,23 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
-import android.widget.Switch;
-import android.widget.Toast;
-import android.widget.ToggleButton;
+
+import java.util.Objects;
 
 import chrisandbrendanappdev.unhalbedo.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ *  Fragment for the survey. Asks the user for additional data, including snow depth, temp,
+ *  and weight. The user may specify if they would like to use imperial or metric units.
+ *  Once the user hits next, the next question will be allowing them to enter notes about the
+ *  observation.
  */
 public class SurveyAdditionalData extends SurveyFragment {
 
     private EditText depth, temp, weight1, weight2;
+    // Selects the units
     private Spinner depthSpin, tempSpin, weightSpin1, weightSpin2;
+    private boolean depthMetric, tempMetric, weightMetric;
     private Button butNext;
 
     public SurveyAdditionalData() {
@@ -33,7 +35,7 @@ public class SurveyAdditionalData extends SurveyFragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.survey_additional_data_fragment, container, false);
@@ -45,17 +47,17 @@ public class SurveyAdditionalData extends SurveyFragment {
 
     @Override
     void getViews(View v) {
-        depth = (EditText) v.findViewById(R.id.survey_additional_data_snow_depth);
-        temp = (EditText) v.findViewById(R.id.survey_additional_data_snow_temperature);
-        weight1 = (EditText) v.findViewById(R.id.survey_additional_data_weight_no_snow);
-        weight2 = (EditText) v.findViewById(R.id.survey_additional_data_weight_snow);
+        depth = v.findViewById(R.id.survey_additional_data_snow_depth);
+        temp = v.findViewById(R.id.survey_additional_data_snow_temperature);
+        weight1 = v.findViewById(R.id.survey_additional_data_weight_no_snow);
+        weight2 = v.findViewById(R.id.survey_additional_data_weight_snow);
 
-        depthSpin = (Spinner) v.findViewById(R.id.survey_additional_data_spinner_depth);
-        tempSpin = (Spinner) v.findViewById(R.id.survey_additional_data_spinner_temp);
-        weightSpin1 = (Spinner) v.findViewById(R.id.survey_additional_data_spinner_weight1);
-        weightSpin2 = (Spinner) v.findViewById(R.id.survey_additional_data_spinner_weight2);
+        depthSpin = v.findViewById(R.id.survey_additional_data_spinner_depth);
+        tempSpin = v.findViewById(R.id.survey_additional_data_spinner_temp);
+        weightSpin1 = v.findViewById(R.id.survey_additional_data_spinner_weight1);
+        weightSpin2 = v.findViewById(R.id.survey_additional_data_spinner_weight2);
 
-        butNext = (Button) v.findViewById(R.id.survey_additional_data_next);
+        butNext = v.findViewById(R.id.survey_additional_data_next);
 
         setupAll();
     }
@@ -78,17 +80,17 @@ public class SurveyAdditionalData extends SurveyFragment {
         String[] depths = {getString(R.string.units_in), getString(R.string.units_cm)};
         String[] temps = {getString(R.string.units_F), getString(R.string.units_C)};
         String[] weights = {getString(R.string.units_lbs), getString(R.string.units_g)};
-        ArrayAdapter<String> depthAdapter = new ArrayAdapter<String>(
-                getActivity(),
+        ArrayAdapter<String> depthAdapter = new ArrayAdapter<>(
+                Objects.requireNonNull(getActivity()),
                 android.R.layout.simple_list_item_1,
                 depths
         );
-        ArrayAdapter<String> tempAdapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> tempAdapter = new ArrayAdapter<>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
                 temps
         );
-        ArrayAdapter<String> weightAdapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> weightAdapter = new ArrayAdapter<>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
                 weights
@@ -102,6 +104,7 @@ public class SurveyAdditionalData extends SurveyFragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 weightSpin2.setSelection(position, true);
+                weightMetric = position == 1;
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
@@ -110,9 +113,26 @@ public class SurveyAdditionalData extends SurveyFragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 weightSpin1.setSelection(position, true);
+                weightMetric = position == 1;
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
+        });
+        tempSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                tempMetric = position == 1;
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {}
+        });
+        depthSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                depthMetric = position == 1;
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {}
         });
     }
 
@@ -124,13 +144,16 @@ public class SurveyAdditionalData extends SurveyFragment {
                 if (allEntriesValid()) {
                     if (!depth.getText().toString().equals("")) {
                         data.setSnowDepth(Double.parseDouble(depth.getText().toString()));
+                        data.setMetricDepth(depthMetric);
                     }
                     if (!temp.getText().toString().equals("")) {
                         data.setTemperature(Double.parseDouble(temp.getText().toString()));
+                        data.setMetricTemp(tempMetric);
                     }
                     if (!weight1.getText().toString().equals("")) {
                         data.setSnowTubeWeight(Double.parseDouble(weight1.getText().toString()));
                         data.setSnowWeightWithTube(Double.parseDouble(weight2.getText().toString()));
+                        data.setMetricWeight(weightMetric);
                     }
                     saveDataAndContinue(new SurveyNotes());
                 }
