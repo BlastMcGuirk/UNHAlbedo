@@ -78,7 +78,9 @@ public class GetRequest {
                 }
                 in.close();
 
-                return new JSONObject(sb.toString());
+                String result = sb.toString().replace("NaN", "\"NaN\"");
+
+                return new JSONObject(result);
             } else {
                 System.out.println("Error " + status);
                 System.out.println(http.getResponseMessage());

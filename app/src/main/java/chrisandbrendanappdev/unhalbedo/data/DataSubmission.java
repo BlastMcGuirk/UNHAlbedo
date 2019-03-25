@@ -117,7 +117,7 @@ public class DataSubmission implements Serializable {
         SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm aa", Locale.US);
 
         try {
-            json.put("user", GetRequest.UserID(username, token));
+            json.put("user", GetRequest.UserID(token, username));
             // verify user id is valid
             if (json.getInt("user") == 0) {
                 return null;
@@ -141,6 +141,8 @@ public class DataSubmission implements Serializable {
             if (temperature != -999) {
                 double tempVal = metricTemp ? temperature : (temperature * (9.0/5.0)) + 32;
                 json.put("surface_Skin_Temperature", tempVal);
+            } else {
+                json.put("surface_Skin_Temperature", "NaN");
             }
 
             json.put("tube_Number", 0);
@@ -157,6 +159,9 @@ public class DataSubmission implements Serializable {
                 double tubeCapWeight = metricWeight ? snowTubeWeight : snowTubeWeight / 453.592;
                 json.put("snow_tube_cap_weight", snowTubeCapWeight);
                 json.put("tube_cap_weight", tubeCapWeight);
+            } else {
+                json.put("snow_tube_cap_weight", "NaN");
+                json.put("tube_cap_weight", "NaN");
             }
 
             boolean snowing =   snowSurfaceAge.equals(SnowSurfaceAge.CURRENTLY_SNOWING) ||
