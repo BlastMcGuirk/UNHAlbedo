@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         container.removeAllViews();
 
         // Attempt a login
-        if (username != null) {
+        if (username != null && !username.equals("")) {
             // User has successfully logged in
             setViewTextToLoggedIn();
         } else {
@@ -152,7 +152,6 @@ public class MainActivity extends AppCompatActivity {
         View v = layoutInflater.inflate(R.layout.main_page_logged_in_layout, container);
 
         loadEntries(v);
-
     }
 
     /*
@@ -210,11 +209,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Parse JSON values
         try {
-            JSONArray listOfEntries = results.getJSONArray("entries");
+            JSONArray listOfEntries = results.getJSONArray("results");
             // Store JSON of entries for later viewing
             for (int i = 0; i < listOfEntries.length(); i++) {
                 JSONObject obj = listOfEntries.getJSONObject(i);
-                //pastSubmissions.add(obj);
                 // Get name and date of submissions for listing
                 String title = obj.getString("station_Number");
                 String date = obj.getString("observation_Date");

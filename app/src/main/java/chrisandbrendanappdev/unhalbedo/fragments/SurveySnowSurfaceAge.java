@@ -77,7 +77,7 @@ public class SurveySnowSurfaceAge extends SurveyFragment {
             age.setSelection(spinnerAdapter.getPosition(data.getSnowSurfaceAge()));
         }
         if (data.isSnowMelt()) {
-            snowMelt.setActivated(true);
+            snowMelt.setChecked(true);
         }
     }
 }

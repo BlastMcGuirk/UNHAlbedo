@@ -68,17 +68,21 @@ public class SurveySnowState extends SurveyFragment {
         dormant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Set patchiness to 0% and go to Ground Cover question
+                // Set patchiness to 0% and go to Snow Surface Age question
                 data.setPatchinessPercentage(0);
-                continueSurvey(DataEnums.SnowState.SNOW_FREE_DORMANT, new SurveyGroundCover());
+                data.setSnowMelt(true);
+                data.setSnowSurfaceAge(DataEnums.SnowSurfaceAge.FOUR_PLUS_WEEKS);
+                continueSurvey(DataEnums.SnowState.SNOW_FREE_DORMANT, new SurveySnowSurfaceAge());
             }
         });
         green.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Set patchiness to 0% and go to Ground Cover question
+                // Set patchiness to 0% and go to Snow Surface Age question
                 data.setPatchinessPercentage(0);
-                continueSurvey(DataEnums.SnowState.SNOW_FREE_GREEN, new SurveyGroundCover());
+                data.setSnowMelt(true);
+                data.setSnowSurfaceAge(DataEnums.SnowSurfaceAge.FOUR_PLUS_WEEKS);
+                continueSurvey(DataEnums.SnowState.SNOW_FREE_GREEN, new SurveySnowSurfaceAge());
             }
         });
     }

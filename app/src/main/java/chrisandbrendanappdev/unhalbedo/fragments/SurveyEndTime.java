@@ -68,8 +68,13 @@ public class SurveyEndTime extends SurveyFragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                data.setEndCalendar(calendar);
-                saveDataAndContinue(new SurveySummary());
+                boolean timeSet = !time.getText().toString().equals("");
+                if (timeSet) {
+                    data.setEndCalendar(calendar);
+                    saveDataAndContinue(new SurveySummary());
+                } else {
+                    time.setError("Please enter a time");
+                }
             }
         });
     }

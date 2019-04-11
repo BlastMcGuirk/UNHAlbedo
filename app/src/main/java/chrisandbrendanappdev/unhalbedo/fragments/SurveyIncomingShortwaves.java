@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import chrisandbrendanappdev.unhalbedo.R;
 
@@ -20,7 +21,7 @@ import chrisandbrendanappdev.unhalbedo.R;
 public class SurveyIncomingShortwaves extends SurveyFragment {
 
     private EditText in1, in2, in3;
-    private Button butNext;
+    private Button butNext, camera;
 
     public SurveyIncomingShortwaves() {
         // Required empty public constructor
@@ -43,6 +44,7 @@ public class SurveyIncomingShortwaves extends SurveyFragment {
         in2 = v.findViewById(R.id.survey_incoming_shortwave_2);
         in3 = v.findViewById(R.id.survey_incoming_shortwave_3);
         butNext = v.findViewById(R.id.survey_incoming_shortwave_next);
+        camera = v.findViewById(R.id.survey_incoming_shortwave_camera);
     }
 
     @Override
@@ -56,6 +58,12 @@ public class SurveyIncomingShortwaves extends SurveyFragment {
                     data.setIncoming3(Double.parseDouble(in3.getText().toString()));
                     saveDataAndContinue(new SurveyOutgoingShortwaves());
                 }
+            }
+        });
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Feature not enabled", Toast.LENGTH_LONG).show();
             }
         });
     }
