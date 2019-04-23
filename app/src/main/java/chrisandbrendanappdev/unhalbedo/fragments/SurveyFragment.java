@@ -28,7 +28,7 @@ abstract class  SurveyFragment extends Fragment {
         addOnClickListeners();
     }
 
-    private void loadData() {
+    void loadData() {
         dataProvider = (DataProvider) getActivity();
         assert dataProvider != null;
         data = dataProvider.getData();
@@ -48,6 +48,15 @@ abstract class  SurveyFragment extends Fragment {
                                      R.anim.enter_from_left,  R.anim.exit_to_right)
                 .replace(R.id.frag_view, nextFragment)
                 .addToBackStack(null)
+                .commit();
+    }
+
+    void saveDataAndContinueWithoutAddingToBackStack(SurveyFragment nextFragment) {
+        dataProvider.setData(data);
+        Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
+                        R.anim.enter_from_left,  R.anim.exit_to_right)
+                .replace(R.id.frag_view, nextFragment)
                 .commit();
     }
 

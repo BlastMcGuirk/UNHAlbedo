@@ -1,11 +1,15 @@
 package chrisandbrendanappdev.unhalbedo.data;
 
+import android.media.Image;
+import android.media.ImageReader;
 import android.support.annotation.NonNull;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.Serializable;
+import java.nio.ShortBuffer;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -45,9 +49,15 @@ public class DataSubmission implements Serializable {
 
     // Incoming Shortwaves
     private double incoming1, incoming2, incoming3;
+    private Image incomingImage;
+    private File incomingImageFile;
+    private ImageReader incomingImageReader;
 
     // Outgoing Shortwaves
     private double outgoing1, outgoing2, outgoing3;
+    private Image outgoingImage;
+    private File outgoingImageFile;
+    private ImageReader outgoingImageReader;
 
     // Additional Snow Depth and Density Data
     private double snowDepth;
@@ -76,7 +86,13 @@ public class DataSubmission implements Serializable {
         snowMelt = false;
         groundCover = null;
         incoming1 = incoming2 = incoming3 = -999;
+        incomingImage = null;
+        incomingImageFile = null;
+        incomingImageReader = null;
         outgoing1 = outgoing2 = outgoing3 = -999;
+        outgoingImage = null;
+        outgoingImageFile = null;
+        outgoingImageReader = null;
         snowDepth = -999;
         snowWeightWithTube = -999;
         snowTubeWeight = -999;
@@ -240,6 +256,16 @@ public class DataSubmission implements Serializable {
     public double getIncoming3() {return incoming3;}
     public void setIncoming3(double incoming3) {this.incoming3 = incoming3;}
 
+    public Image getIncomingImage() {return incomingImage;}
+    public File getIncomingImageFile() {return incomingImageFile;}
+    public void setIncomingImage(Image img, File file) {
+        this.incomingImage = img;
+        this.incomingImageFile = file;
+    }
+
+    public ImageReader getIncomingImageReader() {return incomingImageReader;}
+    public void setIncomingImageReader(ImageReader ir) {this.incomingImageReader = ir;}
+
     public double getOutgoing1() {return outgoing1;}
     public void setOutgoing1(double outgoing1) {this.outgoing1 = outgoing1;}
 
@@ -248,6 +274,16 @@ public class DataSubmission implements Serializable {
 
     public double getOutgoing3() {return outgoing3;}
     public void setOutgoing3(double outgoing3) {this.outgoing3 = outgoing3;}
+
+    public Image getOutgoingImage() {return outgoingImage;}
+    public File getOutgoingImageFile() {return outgoingImageFile;}
+    public void setOutgoingImage(Image img, File file) {
+        this.outgoingImage = img;
+        this.outgoingImageFile = file;
+    }
+
+    public ImageReader getOutgoingImageReader() {return outgoingImageReader;}
+    public void setOutgoingImageReader(ImageReader ir) {this.outgoingImageReader = ir;}
 
     public double getSnowDepth() {return snowDepth;}
     public void setSnowDepth(double snowDepth) {this.snowDepth = snowDepth;}
@@ -277,5 +313,110 @@ public class DataSubmission implements Serializable {
     // Calculate albedo
     public double getAlbedo() {
         return ((outgoing1 / incoming1) + (outgoing2 / incoming2) + (outgoing3 / incoming3)) / 3.0;
+    }
+
+    public void calculateAlbedoFromImages() {
+        System.out.println("------------------------------------------------------");
+        System.out.println("Calculating Albedo From Images!!!");
+        if (incomingImage == null || outgoingImage == null) {
+            System.err.println("Images are null");
+            return;
+        }
+
+        ShortBuffer incomingByteBuffer = incomingImage.getPlanes()[0].getBuffer().asShortBuffer();
+        ShortBuffer outgoingByteBuffer = outgoingImage.getPlanes()[0].getBuffer().asShortBuffer();
+        if (incomingByteBuffer.capacity() != outgoingByteBuffer.capacity()) {
+            System.err.println("Buffers don't match!!!");
+            return;
+        }
+
+        int length = incomingByteBuffer.capacity();
+        incomingByteBuffer.position(0);
+        outgoingByteBuffer.position(0);
+        short[] incomingBytes = new short[length];
+        short[] outgoingBytes = new short[length];
+        incomingByteBuffer.get(incomingBytes);
+        outgoingByteBuffer.get(outgoingBytes);
+
+        final int width = incomingImage.getWidth();
+        final int height = incomingImage.getHeight();
+        /*
+         * Pixels will appear in some format, with RGB values. However,
+         * I do not know which order it will use for these. The first pixel
+         * could be Red, could be Blue or could be Green. In any case,
+         * I went about just doing groups, since no matter what the color
+         * is, they will all be in the same location. 2 of these will be
+         * green, but since I think it needs a weighting factor of .5
+         * anyway, having each pixel group have a weighting factor of .25
+         * will make that happen. Pixels might look like this
+         *
+         *     0  1  2  3  4  5  6
+         *  0  *  *  *  *  *  *  *
+         *  1  *  *  *  *  *  *  *
+         *  2  *  *  *  *  *  *  *
+         *  3  *  *  *  *  *  *  *
+         *  4  *  *  *  *  *  *  *
+         *  5  *  *  *  *  *  *  *
+         *  6  *  *  *  *  *  *  *
+         *
+         */
+
+        // Process pixels even/even
+        int eeOutSum = 0;
+        int eeInSum = 0;
+        for (int row = 0; row < height; row+=2) {
+            for (int col = 0; col < width; col+=2) {
+                int pos = row * width + col;
+                eeOutSum += outgoingBytes[pos];
+                eeInSum += incomingBytes[pos];
+            }
+        }
+
+        // Process pixels even/odd
+        int eoOutSum = 0;
+        int eoInSum = 0;
+        for (int row = 0; row < height; row+=2) {
+            for (int col = 1; col < width; col+=2) {
+                int pos = row * width + col;
+                eoOutSum += outgoingBytes[pos];
+                eoInSum += incomingBytes[pos];
+            }
+        }
+
+        // Process pixels odd/even
+        int oeOutSum = 0;
+        int oeInSum = 0;
+        for (int row = 1; row < height; row+=2) {
+            for (int col = 0; col < width; col+=2) {
+                int pos = row * width + col;
+                oeOutSum += outgoingBytes[pos];
+                oeInSum += incomingBytes[pos];
+            }
+        }
+        // Process pixels odd/odd
+        int ooOutSum = 0;
+        int ooInSum = 0;
+        for (int row = 1; row < height; row+=2) {
+            for (int col = 1; col < width; col+=2) {
+                int pos = row * width + col;
+                ooOutSum += outgoingBytes[pos];
+                ooInSum += incomingBytes[pos];
+            }
+        }
+
+
+        // Combine and calculate albedo
+        double eeAlbedo = eeOutSum/(double)eeInSum;
+        double eoAlbedo = eoOutSum/(double)eoInSum;
+        double oeAlbedo = oeOutSum/(double)oeInSum;
+        double ooAlbedo = ooOutSum/(double)ooInSum;
+        double albedo = eeAlbedo + eoAlbedo + oeAlbedo + ooAlbedo;
+        outgoing1 = albedo;
+        outgoing2 = albedo;
+        outgoing3 = albedo;
+        incoming1 = 1;
+        incoming2 = 1;
+        incoming3 = 1;
+        System.out.println("Done calculating!");
     }
 }

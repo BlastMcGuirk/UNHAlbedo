@@ -83,11 +83,23 @@
     <string name="survey_incoming_shortwave_label_1">Incoming Shortwave 1:</string>
     <string name="survey_incoming_shortwave_label_2">Incoming Shortwave 2:</string>
     <string name="survey_incoming_shortwave_label_3">Incoming Shortwave 3:</string>
+    <!-- Incoming Picture -->
+    <string name="survey_picture_incoming_label_1">Take Photo - 1 of 2</string>
+    <string name="survey_picture_incoming_label_2">Face towards the sun. Keep your arm and phone parallel to the ground.</string>
+    <string name="survey_picture_incoming_label_3">For this phone, the screen will be facing the sky. Be sure your shadow does not appear in the image.</string>
+    <string name="survey_picture_take_photo_label">Take Photo</string>
+    <string name="survey_picture_taking_photo_label">Taking Photo</string>
+    <string name="survey_picture_retake_photo_label">Retake Photo</string>
+    <string name="survey_picture_use_photo_label">Use Photo</string>
     <!-- Outgoing Shortwave -->
     <string name="survey_outgoing_shortwave_question">What are the outgoing shortwave readings?</string>
     <string name="survey_outgoing_shortwave_label_1">Outgoing Shortwave 1:</string>
     <string name="survey_outgoing_shortwave_label_2">Outgoing Shortwave 2:</string>
     <string name="survey_outgoing_shortwave_label_3">Outgoing Shortwave 3:</string>
+    <!-- Outgoing Picture -->
+    <string name="survey_picture_outgoing_label_1">Take Photo - 2 of 2</string>
+    <string name="survey_picture_outgoing_label_2">Face towards the ground. Keep your arm and phone parallel to the ground.</string>
+    <string name="survey_picture_outgoing_label_3">For this phone, the screen will be facing the ground. Be sure your shadow does not appear in the image.</string>
     <!-- Additional Data -->
     <string name="survey_additional_data_question">These values are optional and can be entered if the proper equipment is available.</string>
     <string name="survey_additional_data_snow_depth_label">Snow Depth:</string>

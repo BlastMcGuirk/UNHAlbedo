@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.SurveyIncomingPhoto">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/survey_question_margin_bottom"
+        android:layout_marginTop="@dimen/survey_question_margin_top"
+        android:gravity="center"
+        android:text="@string/survey_picture_outgoing_label_1"
+        android:textColor="@color/BLACK"
+        android:textSize="@dimen/survey_question_size" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="25dp"
+        android:layout_gravity="center"
+        android:src="@drawable/photo_down"
+        android:contentDescription="@string/survey_picture_outgoing_label_1" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingBottom="25dp"
+        android:text="@string/survey_picture_outgoing_label_2"
+        android:textAlignment="center"
+        android:textSize="@dimen/survey_picture_info_label_text" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingBottom="25dp"
+        android:text="@string/survey_picture_outgoing_label_3"
+        android:textAlignment="center"
+        android:textSize="@dimen/survey_picture_info_label_text"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/survey_picture_take"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/survey_picture_take_photo_label" />
+
+</LinearLayout>

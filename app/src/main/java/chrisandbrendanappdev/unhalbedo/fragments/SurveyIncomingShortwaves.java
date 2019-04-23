@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import chrisandbrendanappdev.unhalbedo.R;
 
@@ -63,7 +62,7 @@ public class SurveyIncomingShortwaves extends SurveyFragment {
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Feature not enabled", Toast.LENGTH_LONG).show();
+                saveDataAndContinue(new SurveyIncomingPhoto());
             }
         });
     }
