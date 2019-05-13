@@ -117,16 +117,19 @@ public class SurveyLocation extends SurveyFragment {
         useCurrentLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Feature not enabled yet", Toast.LENGTH_SHORT).show();
                 // Check for permissions... yikes again
                 if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getContext()), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
                 Location loc = locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                String latText = loc.getLatitude() + "";
-                String lonText = loc.getLongitude() + "";
-                latitude.setText(latText);
-                longitude.setText(lonText);
+                if (loc == null) {
+                    Toast.makeText(getActivity(), "Cannot find location", Toast.LENGTH_LONG).show();
+                } else {
+                    String latText = loc.getLatitude() + "";
+                    String lonText = loc.getLongitude() + "";
+                    latitude.setText(latText);
+                    longitude.setText(lonText);
+                }
             }
         });
         latitude.setOnFocusChangeListener(new View.OnFocusChangeListener() {

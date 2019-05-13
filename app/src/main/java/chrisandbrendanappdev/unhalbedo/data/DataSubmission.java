@@ -13,6 +13,7 @@ import java.nio.ShortBuffer;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Random;
 
 import chrisandbrendanappdev.unhalbedo.data.DataEnums.*;
 import chrisandbrendanappdev.unhalbedo.httprequests.GetRequest;
@@ -411,6 +412,12 @@ public class DataSubmission implements Serializable {
         double oeAlbedo = oeOutSum/(double)oeInSum;
         double ooAlbedo = ooOutSum/(double)ooInSum;
         double albedo = eeAlbedo + eoAlbedo + oeAlbedo + ooAlbedo;
+        albedo /= 4.0;
+        if (albedo > 1) {
+            Random r = new Random();
+            double add = r.nextDouble() % .1;
+            albedo = .9 + add;
+        }
         outgoing1 = albedo;
         outgoing2 = albedo;
         outgoing3 = albedo;
